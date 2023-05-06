@@ -11,3 +11,4 @@ Features:
 4) Process Update Notifications
 5) Process Update Editing
 6) Tip of the day storage
+7) Team member registration (by manager role)
