@@ -1,12 +1,21 @@
-export class UpdateMember {
+export class UpdateMemberService {
     updateTeam(name: string, array: any[], manager: string, team: string) {
-        //accept a name, an array, a manager, and a team.  Find the name within the array and update the manager and team.  Return the array.
-
+        for (let i = 0; i < array.length; i++) {
+            if (array[i].name = name) {
+                array[i].manager = manager;
+                array[i].team = team;
+            }
+        }
         return array;
     }
 
     updateAssignments(name: string, array: any[], primaryAssignment: string, secondaryAssignment: string) {
-        //accept a name, an array, a primaryAssignment, a secondaryAssignment.  Find the name within the array, update the primary and secondary assignments.  Return the array.
+        for (let i = 0; i < array.length; i++) {
+            if (array[i].name === name) {
+                array[i].primaryAssignment = primaryAssignment;
+                array[i].secondaryAssignment = secondaryAssignment;
+            }
+        }
         return array;
     }
 }

@@ -1,5 +1,6 @@
 import { Injectable } from "@angular/core";
 import { Member } from "./member.model";
+import { UpdateMemberService } from "./update-member.service";
 
 @Injectable()
 export class DataService {
@@ -7,7 +8,7 @@ export class DataService {
     dailyTips: any[] = [];
     processUpdates: any[] = [];
 
-    constructor(private member: Member) {}
+    constructor(private update: UpdateMemberService) {}
 
     createMember(name: string, manager: string, primaryAssignment: string, secondaryAssignment: string, role: string, team: string) {
         let newMember = new Member(name, manager, primaryAssignment, secondaryAssignment, role, team);
@@ -25,9 +26,20 @@ export class DataService {
     createProcessUpdate(task: string, info: string) {
         const update = {
             assignment: task,
-            update: info
+            update: info,
+            membersRead: []
         };
         this.processUpdates.push(update);
+    }
+
+    updateMemberOrg(name: string, manager: string, team: string) {
+        this.teamMembers = this.update.updateTeam(name, this.teamMembers, manager, team);
+        this.saveData();
+    }
+
+    updateTasks(name: string, primaryAssignment: string, secondaryAssignment: string) {
+        this.teamMembers = this.update.updateAssignments(name, this.teamMembers, primaryAssignment, secondaryAssignment);
+        this.saveData();
     }
 
     //uses web storage for now, can eventually be hooked up to a database.
