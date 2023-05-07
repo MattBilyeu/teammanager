@@ -1,12 +1,14 @@
 import { Injectable } from "@angular/core";
-import { Member } from "./member.model";
+import { Member } from "./models/member.model";
 import { UpdateMemberService } from "./update-member.service";
+import { Tip } from "./models/tip.model";
+import { Update } from "./models/update.model";
 
 @Injectable()
 export class DataService {
     teamMembers: Member[] = [];
-    dailyTips: any[] = [];
-    processUpdates: any[] = [];
+    dailyTips: Tip[] = [];
+    processUpdates: Update[] = [];
 
     constructor(private update: UpdateMemberService) {}
 
@@ -15,21 +17,21 @@ export class DataService {
         this.teamMembers.push(newMember);
     }
 
-    createDailyTip(cat: string, info: string) {
+    createDailyTip(category: string, info: string) {
         const tip = {
-            category: cat,
+            category: category,
             tip: info
         };
         this.dailyTips.push(tip);
     }
 
     createProcessUpdate(task: string, info: string) {
-        const update = {
-            assignment: task,
-            update: info,
+        const newUpdate: Update = {
+            task: task,
+            info: info,
             membersRead: []
         };
-        this.processUpdates.push(update);
+        this.processUpdates.push(newUpdate);
     }
 
     updateMemberOrg(name: string, manager: string, team: string) {

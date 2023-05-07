@@ -1,1 +1,13 @@
-<p>daily-tip-edit works!</p>
+<h1>Daily Tip Edit Component</h1>
+<label>Category</label>
+<input type="text" #category>
+<label>Tip</label>
+<input type="text" #tip>
+<button (click)="onSubmit()">Submit Tip</button>
+<hr>
+<h1>List of Current Tips</h1>
+<ol>
+    <li *ngFor="let tip of tipArray; let i = index;">{{ tip.category }}, {{ tip.tip }}
+        <button (click)="onDelete(i)">X</button>
+    </li>
+</ol>

@@ -13,8 +13,9 @@ import { ProcessUpdatesEditComponent } from './process-updates/process-updates-e
 import { RegistrationComponent } from './registration/registration.component';
 import { ChangeManagerComponent } from './registration/change-manager/change-manager.component';
 import { DataService } from './data.service';
-import { Member } from './member.model';
+import { Member } from './models/member.model';
 import { UpdateMemberService } from './update-member.service';
+import { Tip } from './models/tip.model';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,7 @@ import { UpdateMemberService } from './update-member.service';
     BrowserModule,
     AppRoutingModule
   ],
-  providers: [DataService, UpdateMemberService],
-  bootstrap: [AppComponent, DataService, Member,UpdateMemberService]
+  providers: [DataService, UpdateMemberService, DataService, UpdateMemberService],
+  bootstrap: [AppComponent]
 })
 export class AppModule { }

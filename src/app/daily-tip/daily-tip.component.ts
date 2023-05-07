@@ -7,17 +7,14 @@ import { DataService } from '../data.service';
   styleUrls: ['./daily-tip.component.css']
 })
 export class DailyTipComponent implements OnInit {
-  tips: any[] = [];
+  tip: {category: string, tip: string};
 
   constructor(private dataService: DataService) {}
-
-  getTip() {
-    let tipIndex = Math.floor(Math.random()*this.tips.length);
-    return this.tips[tipIndex];
-  }
   
   ngOnInit() {
-    this.tips = this.dataService.dailyTips;
+    const tips = this.dataService.dailyTips;
+    const randomTip = tips[Math.floor(Math.random()*tips.length)];
+    this.tip = randomTip;
   }
 
 }
