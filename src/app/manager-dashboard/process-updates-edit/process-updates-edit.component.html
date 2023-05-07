@@ -1,1 +1,13 @@
 <p>process-updates-edit works!</p>
+<app-process-update *ngFor="let update of processUpdates; let i = index" 
+                    [update]="update" 
+                    [dashboard]="'mgr'" 
+                    [index]="i" 
+                    (updateDeleted)="updateArray()">
+</app-process-update>
+<br>
+<label>Task: </label>
+<input type="text" #taskName>
+<label>Update: </label>
+<input type="text" #taskUpdate>
+<button type="submit" (click)="onSubmit()">Submit</button>

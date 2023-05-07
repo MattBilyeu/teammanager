@@ -1,10 +1,19 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { DataService } from 'src/app/data.service';
+import { Member } from 'src/app/models/member.model';
 
 @Component({
   selector: 'app-project-assignments',
   templateUrl: './project-assignments.component.html',
   styleUrls: ['./project-assignments.component.css']
 })
-export class ProjectAssignmentsComponent {
+export class ProjectAssignmentsComponent implements OnInit {
+  currentUser: Member;
+
+  constructor(private dataService: DataService) {}
+
+  ngOnInit() {
+    this.currentUser = this.dataService.returnUser();
+  }
 
 }

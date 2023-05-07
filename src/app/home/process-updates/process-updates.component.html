@@ -1,3 +1,4 @@
-<p>process-updates works!</p>
-<!-- Use property binding and the process-update component for 
-each process update to check if the individual update has been acknowledged by the user. -->
+<div *ngFor="let update of processUpdates; let i = index">
+    <app-process-update [update]="update" *ngIf="!updateRead(update)"></app-process-update>
+    <button (click)="onAcknowledged(i)" *ngIf="!updateRead(update)">Mark as Read</button>
+</div>

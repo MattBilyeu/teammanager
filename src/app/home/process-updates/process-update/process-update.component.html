@@ -1,1 +1,7 @@
-<p>process-update works!</p>
+<h1>{{ update.task }}</h1>
+<h3>{{ update.info }}</h3>
+<ol *ngIf="dashboard == 'mgr'">Acknowledged By: 
+    <li *ngIf="update.membersRead.length === 0">None</li>
+    <li *ngFor="let member of update.membersRead; let i = index">{{ update.membersRead[i] }}</li>
+</ol>
+<button *ngIf="dashboard === 'mgr'" (click)="onDelete(index)">Delete Update</button>

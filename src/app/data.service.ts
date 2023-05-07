@@ -45,6 +45,16 @@ export class DataService {
         this.saveData();
     }
 
+    returnUser() {
+        for (let i = 0; i < this.teamMembers.length; i++) {
+            if (this.user = this.teamMembers[i].name) {
+                return this.teamMembers[i]
+            }
+        };
+        alert('Login Process Failed, User not set at Data Service');
+        return new Member('Login Broken','Login Broken','Login Broken', 'Login Broken','Login Broken','Login Broken');
+    }
+
     //uses web storage for now, can eventually be hooked up to a database.
     saveData() {
         let data = {

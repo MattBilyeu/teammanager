@@ -18,8 +18,19 @@ export class ProcessUpdatesComponent implements OnInit {
     this.user = this.dataService.user;
   }
 
-  onAcknowledged(i) {
+  onAcknowledged(index: number) {
+    this.dataService.processUpdates[index].membersRead.push(this.user);
+    this.processUpdates = this.dataService.processUpdates;
+    this.dataService.saveData();
+  }
 
+  updateRead(update: Update) {
+    for (let i = 0; i < update.membersRead.length; i++) {
+      if (this.user == update.membersRead[i]) {
+        return true
+      }
+    }
+    return false
   }
 
 }
