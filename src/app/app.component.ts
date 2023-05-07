@@ -7,12 +7,11 @@ import { DataService } from './data.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  userRole: string = 'admin';
-
   constructor(private dataService: DataService) {}
 
   ngOnInit() {
     this.dataService.loadData();
+    this.dataService.user = 'Frank';
     //The following lines are for development use to reset the application on every refresh.  It should be removed prior to pushing the application to production.
       // this.dataService.teamMembers = [];
       // this.dataService.dailyTips = [];

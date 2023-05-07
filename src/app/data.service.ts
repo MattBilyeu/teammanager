@@ -9,6 +9,7 @@ export class DataService {
     teamMembers: Member[] = [];
     dailyTips: Tip[] = [];
     processUpdates: Update[] = [];
+    user: string;
 
     constructor(private update: UpdateMemberService) {}
 
