@@ -7,6 +7,7 @@ import { DataService } from './data.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
+  userRole: string = 'admin';
 
   constructor(private dataService: DataService) {}
 

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { DataService } from '../data.service';
 
 @Component({
@@ -7,6 +7,7 @@ import { DataService } from '../data.service';
   styleUrls: ['./daily-tip.component.css']
 })
 export class DailyTipComponent implements OnInit {
+  @Input() userRole: string = '';
   tip: {category: string, tip: string};
 
   constructor(private dataService: DataService) {}
