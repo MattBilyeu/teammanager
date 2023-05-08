@@ -16,6 +16,9 @@ import { DataService } from './data.service';
 import { UpdateMemberService } from './update-member.service';
 import { ManagerDashboardComponent } from './manager-dashboard/manager-dashboard.component';
 import { ProcessUpdateComponent } from './home/process-updates/process-update/process-update.component';
+import { MemberAssignmentsComponent } from './manager-dashboard/project-assignments-edit/member-assignments/member-assignments.component';
+import { UserRegistrationComponent } from './manager-dashboard/registration/user-registration/user-registration.component';
+import { ManagerRegistrationComponent } from './manager-dashboard/registration/manager-registration/manager-registration.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +33,10 @@ import { ProcessUpdateComponent } from './home/process-updates/process-update/pr
     RegistrationComponent,
     ChangeManagerComponent,
     ManagerDashboardComponent,
-    ProcessUpdateComponent
+    ProcessUpdateComponent,
+    MemberAssignmentsComponent,
+    UserRegistrationComponent,
+    ManagerRegistrationComponent
   ],
   imports: [
     BrowserModule,

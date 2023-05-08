@@ -9,7 +9,9 @@ export class DataService {
     teamMembers: Member[] = [];
     dailyTips: Tip[] = [];
     processUpdates: Update[] = [];
-    user: string;
+    tasks: string[] = ['Task 1', 'Task 2'];
+    user: string = 'Frank';
+    userRole: string = 'Admin';
 
     constructor(private update: UpdateMemberService) {}
 
