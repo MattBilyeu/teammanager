@@ -3,6 +3,7 @@ import { Member } from "./models/member.model";
 import { UpdateMemberService } from "./update-member.service";
 import { Tip } from "./models/tip.model";
 import { Update } from "./models/update.model";
+import { Team } from "./models/team.model";
 
 @Injectable()
 export class DataService {
@@ -12,6 +13,8 @@ export class DataService {
     tasks: string[] = ['Task 1', 'Task 2'];
     user: string = 'Frank';
     userRole: string = 'Admin';
+    teamName: string = 'teamName';
+    allTeams: Team[];
 
     constructor(private update: UpdateMemberService) {}
 
@@ -55,6 +58,18 @@ export class DataService {
         };
         alert('Login Process Failed, User not set at Data Service');
         return new Member('Login Broken','Login Broken','Login Broken', 'Login Broken','Login Broken','Login Broken');
+    }
+
+    createTeam(managerName: string, teamName: string) {
+        const newTeam: Team = {
+            teamMembers: [],
+            dailyTips: [],
+            processUpdates: [],
+            tasks: [],
+            manager: managerName,
+            teamName: teamName
+        }
+        this.allTeams.push(newTeam);
     }
 
     //uses web storage for now, can eventually be hooked up to a database.

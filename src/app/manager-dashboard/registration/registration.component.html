@@ -6,3 +6,5 @@
         When "New Team" is selected, create a text field to allow a team name to be entered.</li>
     <li>Change manager - allow for a manager to be removed.</li>
 </ol>
+<app-user-registration *ngIf="userRole ==='Manager'"></app-user-registration>
+<app-manager-registration *ngIf="userRole === 'Admin'"></app-manager-registration>
