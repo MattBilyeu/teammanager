@@ -8,3 +8,4 @@
 </ol>
 <app-user-registration *ngIf="userRole ==='Manager'"></app-user-registration>
 <app-manager-registration *ngIf="userRole === 'Admin'"></app-manager-registration>
+<app-change-manager *ngIf="userRole === 'Admin'"></app-change-manager>

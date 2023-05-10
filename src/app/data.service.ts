@@ -14,7 +14,7 @@ export class DataService {
     user: string = 'Frank';
     userRole: string = 'Admin';
     teamName: string = 'teamName';
-    allTeams: Team[];
+    allTeams: Team[] = [];
 
     constructor(private update: UpdateMemberService) {}
 
@@ -60,16 +60,17 @@ export class DataService {
         return new Member('Login Broken','Login Broken','Login Broken', 'Login Broken','Login Broken','Login Broken');
     }
 
-    createTeam(managerName: string, teamName: string) {
+    createTeam(managerName: string, mgrPassword: string, teamName: string) {
         const newTeam: Team = {
             teamMembers: [],
             dailyTips: [],
             processUpdates: [],
             tasks: [],
-            manager: managerName,
+            manager: [{name: managerName, password: mgrPassword}],
             teamName: teamName
-        }
+        };
         this.allTeams.push(newTeam);
+        this.saveData();
     }
 
     //uses web storage for now, can eventually be hooked up to a database.
@@ -77,7 +78,8 @@ export class DataService {
         let data = {
             teamMembers: this.teamMembers,
             dailyTips: this.dailyTips,
-            processUpdates: this.processUpdates
+            processUpdates: this.processUpdates,
+            teams: this.allTeams
         }
         localStorage.setItem('data', JSON.stringify(data));
     }
@@ -86,10 +88,11 @@ export class DataService {
         const dataString = localStorage.getItem('data');
         if (dataString !== null && dataString !== '') {
             try {
-                const data: {teamMembers: Member[], dailyTips: any[], processUpdates: any[]} = JSON.parse(dataString);
+                const data: {teamMembers: Member[], dailyTips: Tip[], processUpdates: Update[], teams: Team[]} = JSON.parse(dataString);
                 this.teamMembers = data.teamMembers;
                 this.dailyTips = data.dailyTips;
                 this.processUpdates = data.processUpdates;
+                this.allTeams = data.teams;
             } catch (err) {
                 console.error('Error parsing data from localStorage', err);
             }

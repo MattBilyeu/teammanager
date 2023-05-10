@@ -7,6 +7,6 @@ export class Team {
     dailyTips: Tip[];
     processUpdates: Update[];
     tasks: string[];
-    manager: string;
+    manager: [{name: string, password: string}];
     teamName: string;
 }

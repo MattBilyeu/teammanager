@@ -14,6 +14,5 @@ export class UserRegistrationComponent {
   onSubmit() {
     const user = this.nameRef.nativeElement.value;
     this.dataService.createMember(user, this.dataService.user, '','','user',this.dataService.teamName);
-    this.dataService.saveData();
   }
 }
