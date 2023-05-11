@@ -19,6 +19,9 @@ import { ProcessUpdateComponent } from './home/process-updates/process-update/pr
 import { MemberAssignmentsComponent } from './manager-dashboard/project-assignments-edit/member-assignments/member-assignments.component';
 import { UserRegistrationComponent } from './manager-dashboard/registration/user-registration/user-registration.component';
 import { ManagerRegistrationComponent } from './manager-dashboard/registration/manager-registration/manager-registration.component';
+import { ChangeTeamComponent } from './manager-dashboard/registration/change-manager/change-team/change-team.component';
+import { AddRemoveTasksComponent } from './manager-dashboard/add-remove-tasks/add-remove-tasks.component';
+import { AddRemoveTaskComponent } from './manager-dashboard/add-remove-tasks/add-remove-task/add-remove-task.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +39,10 @@ import { ManagerRegistrationComponent } from './manager-dashboard/registration/m
     ProcessUpdateComponent,
     MemberAssignmentsComponent,
     UserRegistrationComponent,
-    ManagerRegistrationComponent
+    ManagerRegistrationComponent,
+    ChangeTeamComponent,
+    AddRemoveTasksComponent,
+    AddRemoveTaskComponent
   ],
   imports: [
     BrowserModule,

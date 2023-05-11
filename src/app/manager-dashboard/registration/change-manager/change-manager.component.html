@@ -1,14 +1,7 @@
-<p>change-manager works!</p>
-Remove a manager, add a manager
-
 <div *ngFor="let team of teams; let i = index">
-    <label>Team Name: {{ team.teamName }}</label>
-    <select #managerSelection>
-        <option *ngFor="let manager of team.manager">{{ manager.name }}</option>
-    </select>
-    <button type="submit" (click)="onRemoveManager(i)">Remove Manager</button>
-    <label>Add Manager: </label>
-    <input type="text" #addManager>
-    <!-- Build button to add manager to team -->
-    <button type="submit" (click)="onDelete(i)">Delete Team</button>
+    <app-change-team 
+        [teamName]="team.teamName" 
+        [managers]="team.manager"
+        [index]="i">
+    </app-change-team>
 </div>

@@ -1,0 +1,11 @@
+<div>
+    <label>Team Name: {{ teamName }}</label>
+    <select #managerSelection>
+        <option *ngFor="let manager of managers">{{ manager.name }}</option>
+    </select>
+    <button type="submit" (click)="onRemoveManager()">Remove Manager</button>
+    <label>Add Manager: </label>
+    <input type="text" #addManager>
+    <button type="submit" (click)="onAddManager()">Add Manager</button>
+    <button type="submit" (click)="onDelete()">Delete Team</button>
+</div>

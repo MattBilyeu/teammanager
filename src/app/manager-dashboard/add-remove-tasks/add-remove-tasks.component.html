@@ -1,0 +1,7 @@
+<p>add-remove-tasks works!</p>
+<div>
+    <label>Add Task:</label>
+    <input type="text" #task>
+    <button type="submit" (click)="onSubmit()">Submit</button>
+    <app-add-remove-task *ngFor="let task of tasks; let i = index" [index]="i" [task]="task"></app-add-remove-task>
+</div>

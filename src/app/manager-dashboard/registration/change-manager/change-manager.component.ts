@@ -9,6 +9,7 @@ import { Team } from 'src/app/models/team.model';
 })
 export class ChangeManagerComponent implements OnInit {
   @ViewChild('managerSelection') managerSelRef;
+  @ViewChild('addManager') managerNameRef;
   teams: Team[] = [];
 
   constructor(private dataService: DataService) {}
@@ -24,6 +25,11 @@ export class ChangeManagerComponent implements OnInit {
         this.dataService.allTeams[index].manager.splice(i,1);
       }
     }
+  }
+
+  onAddManager(index: number){
+    const name = this.managerNameRef.nativeElement.value;
+    this.dataService.allTeams[index].manager.push({name: name, password: ''});
   }
 
   onDelete(index: number) {

@@ -12,7 +12,7 @@ export class DataService {
     processUpdates: Update[] = [];
     tasks: string[] = ['Task 1', 'Task 2'];
     user: string = 'Frank';
-    userRole: string = 'Admin';
+    userRole: string = 'manager';
     teamName: string = 'teamName';
     allTeams: Team[] = [];
 
