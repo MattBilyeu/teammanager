@@ -14,6 +14,7 @@ export class DataService {
     user: string = 'Frank';
     userRole: string = 'manager';
     teamName: string = 'teamName';
+    admins: object[] = [{name: 'Admin', password: 'Admin'}];
     allTeams: Team[] = [];
 
     constructor(private update: UpdateMemberService) {}

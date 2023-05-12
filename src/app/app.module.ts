@@ -22,6 +22,8 @@ import { ManagerRegistrationComponent } from './manager-dashboard/registration/m
 import { ChangeTeamComponent } from './manager-dashboard/registration/change-manager/change-team/change-team.component';
 import { AddRemoveTasksComponent } from './manager-dashboard/add-remove-tasks/add-remove-tasks.component';
 import { AddRemoveTaskComponent } from './manager-dashboard/add-remove-tasks/add-remove-task/add-remove-task.component';
+import { AllTipsComponent } from './all-tips/all-tips.component';
+import { AllUpdatesComponent } from './all-updates/all-updates.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +44,9 @@ import { AddRemoveTaskComponent } from './manager-dashboard/add-remove-tasks/add
     ManagerRegistrationComponent,
     ChangeTeamComponent,
     AddRemoveTasksComponent,
-    AddRemoveTaskComponent
+    AddRemoveTaskComponent,
+    AllTipsComponent,
+    AllUpdatesComponent
   ],
   imports: [
     BrowserModule,

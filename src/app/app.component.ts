@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { DataService } from './data.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -7,10 +8,20 @@ import { DataService } from './data.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  constructor(private dataService: DataService) {}
+  @ViewChild('teamName') teamNameRef;
+  @ViewChild('userName') userNameRef;
+  @ViewChild('role') roleRef;
+  loggedIn: boolean = true;
+  allTeamNames: string[] = ['Test Team Name'];
+
+  constructor(private dataService: DataService,
+              private router: Router) {}
 
   ngOnInit() {
     this.dataService.loadData();
+    this.dataService.allTeams.forEach((team)=> {
+      this.allTeamNames.push(team.teamName);
+    })
     // The following lines are for development use to reset the application on every refresh.  It should be removed prior to pushing the application to production.
       // this.dataService.teamMembers = [];
       // this.dataService.dailyTips = [];
@@ -25,5 +36,33 @@ export class AppComponent implements OnInit {
       // this.dataService.createDailyTip('Category 2', 'Tip 2 for Cat 2');
       // this.dataService.createProcessUpdate('Task 1', 'Process update 1 for task 1');
       // this.dataService.createProcessUpdate('Task 2', 'Process update 1 for task 2');
+  }
+
+  onHome() {
+    if(this.loggedIn === false) {
+      alert('You have to log in first.');
+    } else if(this.dataService.userRole !== 'user') {
+      this.router.navigate(['/managers']);
+    } else {
+      this.router.navigate(['/home']);
+    }
+  }
+
+  onAllTips() {
+    this.router.navigate(['/all-tips']);
+  }
+
+  onAllUpdates() {
+    this.router.navigate(['/all-updates']);
+  }
+
+  onLogOut() {
+    this.loggedIn = false;
+  }
+
+  onLogIn() {
+    //verification step
+    this.loggedIn = true;
+    //load team info into data service
   }
 }
