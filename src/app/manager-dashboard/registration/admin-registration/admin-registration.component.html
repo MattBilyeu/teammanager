@@ -1,0 +1,9 @@
+<h1>Delete Admin</h1>
+<select #adminToDelete>
+    <option *ngFor="let admin of currentAdmins">{{ admin.name }}</option>
+</select>
+<button type="submit" (click)="onDelete()">Delete</button>
+<h1>Add Admin</h1>
+<label>Name:</label>
+<input type="text" #adminName>
+<button type="submit" (click)="onRegisterAdmin()">Register Admin</button>

@@ -15,7 +15,7 @@ export class ManagerRegistrationComponent {
 
   onSubmit() {
     const mgrName = this.mgrNameRef.nativeElement.value;
-    const mgrPW = '';
+    const mgrPW = 'Password';
     const teamName = this.teamNameRef.nativeElement.value;
     this.dataService.createTeam(mgrName, mgrPW, teamName);
   }

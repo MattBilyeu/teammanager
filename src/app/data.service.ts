@@ -4,24 +4,28 @@ import { UpdateMemberService } from "./update-member.service";
 import { Tip } from "./models/tip.model";
 import { Update } from "./models/update.model";
 import { Team } from "./models/team.model";
+import { Admin } from "./models/admin.model";
 
 @Injectable()
 export class DataService {
     teamMembers: Member[] = [];
     dailyTips: Tip[] = [];
     processUpdates: Update[] = [];
-    tasks: string[] = ['Task 1', 'Task 2'];
-    user: string = 'Frank';
-    userRole: string = 'manager';
-    teamName: string = 'teamName';
-    admins: object[] = [{name: 'Admin', password: 'Admin'}];
+    tasks: string[] = [];
+    user: string;
+    userRole: string;
+    teamName: string;
+    manager: [{name: string, password: string}];
+    admins: Admin[] = [{name: 'Admin', password: 'Admin'}];
     allTeams: Team[] = [];
+    loggedIn: boolean = false;
 
     constructor(private update: UpdateMemberService) {}
 
     createMember(name: string, manager: string, primaryAssignment: string, secondaryAssignment: string, role: string, team: string) {
-        let newMember = new Member(name, manager, primaryAssignment, secondaryAssignment, role, team);
+        let newMember = new Member(name, manager, primaryAssignment, secondaryAssignment, role, team, 'Password');
         this.teamMembers.push(newMember);
+        this.saveData();
     }
 
     createDailyTip(category: string, info: string) {
@@ -30,6 +34,7 @@ export class DataService {
             tip: info
         };
         this.dailyTips.push(tip);
+        this.saveData();
     }
 
     createProcessUpdate(task: string, info: string) {
@@ -39,6 +44,7 @@ export class DataService {
             membersRead: []
         };
         this.processUpdates.push(newUpdate);
+        this.saveData();
     }
 
     updateMemberOrg(name: string, manager: string, team: string) {
@@ -58,42 +64,35 @@ export class DataService {
             }
         };
         alert('Login Process Failed, User not set at Data Service');
-        return new Member('Login Broken','Login Broken','Login Broken', 'Login Broken','Login Broken','Login Broken');
+        return new Member('Login Broken','Login Broken','Login Broken', 'Login Broken','Login Broken','Login Broken', 'Login Broken');
     }
 
     createTeam(managerName: string, mgrPassword: string, teamName: string) {
-        const newTeam: Team = {
-            teamMembers: [],
-            dailyTips: [],
-            processUpdates: [],
-            tasks: [],
-            manager: [{name: managerName, password: mgrPassword}],
-            teamName: teamName
-        };
+        const newTeam: Team = new Team ([], [], [], [], [{name: managerName, password: mgrPassword}], teamName);
+        console.log(this.allTeams);
         this.allTeams.push(newTeam);
         this.saveData();
     }
 
     //uses web storage for now, can eventually be hooked up to a database.
     saveData() {
-        let data = {
-            teamMembers: this.teamMembers,
-            dailyTips: this.dailyTips,
-            processUpdates: this.processUpdates,
-            teams: this.allTeams
+        this.loadData();
+        const team = new Team(this.teamMembers, this.dailyTips, this.processUpdates, this.tasks, this.manager, this.teamName);
+        for (let i = 0; i < this.allTeams.length; i++) {
+            if(this.allTeams[i].teamName === team.teamName) {
+                this.allTeams[i] = team;
+            }
         }
-        localStorage.setItem('data', JSON.stringify(data));
+        let data = this.allTeams;
+        localStorage.setItem('data2', JSON.stringify(data));
     }
 
     loadData() {
-        const dataString = localStorage.getItem('data');
+        const dataString = localStorage.getItem('data2');
         if (dataString !== null && dataString !== '') {
             try {
-                const data: {teamMembers: Member[], dailyTips: Tip[], processUpdates: Update[], teams: Team[]} = JSON.parse(dataString);
-                this.teamMembers = data.teamMembers;
-                this.dailyTips = data.dailyTips;
-                this.processUpdates = data.processUpdates;
-                this.allTeams = data.teams;
+                const data: Team[] = JSON.parse(dataString);
+                this.allTeams = data;
             } catch (err) {
                 console.error('Error parsing data from localStorage', err);
             }

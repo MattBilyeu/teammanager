@@ -20,6 +20,7 @@ export class ChangeTeamComponent {
     for (let i = 0; i < this.dataService.allTeams[this.index].manager.length; i++) {
       if(this.dataService.allTeams[this.index].manager[i].name === managerName) {
         this.dataService.allTeams[this.index].manager.splice(i,1);
+        this.dataService.saveData();
       }
     }
   }
@@ -27,6 +28,7 @@ export class ChangeTeamComponent {
   onAddManager(){
     const name = this.addMgrRef.nativeElement.value;
     this.dataService.allTeams[this.index].manager.push({name: name, password: ''});
+    this.dataService.saveData();
   }
 
   onDelete() {
@@ -34,5 +36,6 @@ export class ChangeTeamComponent {
     if(verify) {
       this.dataService.allTeams.splice(this.index,1);
     }
+    this.dataService.saveData();
   }
 }

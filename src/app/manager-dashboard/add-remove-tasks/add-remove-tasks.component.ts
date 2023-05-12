@@ -20,6 +20,7 @@ export class AddRemoveTasksComponent implements OnInit {
     const task = this.taskRef.nativeElement.value;
     this.dataService.tasks.push(task);
     this.dataService.saveData();
+    this.taskRef.nativeElement.value = '';
   }
 
 }

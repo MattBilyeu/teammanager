@@ -24,21 +24,14 @@ export class DailyTipEditComponent implements OnInit {
     let cat = this.catInputRef.nativeElement.value;
     let tip = this.tipInputRef.nativeElement.value;
     this.dataService.createDailyTip(cat, tip);
-    this.dataService.saveData();
     this.tipArray = this.dataService.dailyTips;
     this.catInputRef.nativeElement.value = '';
     this.tipInputRef.nativeElement.value = '';
   }
 
   onDelete(index: number) {
-    this.dataService.loadData();
-    if (JSON.stringify(this.dataService.dailyTips) == JSON.stringify(this.tipArray)) {
       this.dataService.dailyTips.splice(index,1);
       this.dataService.saveData();
       this.tipArray = this.dataService.dailyTips;
-    } else {
-      console.log(this.dataService.dailyTips, this.tipArray);
-      alert("Another user is editing the tips, please refresh and try again!");
-    }
   }
 }

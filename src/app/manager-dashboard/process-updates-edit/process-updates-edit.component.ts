@@ -15,8 +15,7 @@ export class ProcessUpdatesEditComponent implements OnInit {
   constructor(private dataService: DataService) {}
 
   ngOnInit() {
-    this.processUpdates = this.dataService.processUpdates;
-    //set up a subscription to processUpdates
+    this.updateArray();
   }
 
   updateArray() {
@@ -27,7 +26,6 @@ export class ProcessUpdatesEditComponent implements OnInit {
     const task = this.taskNameRef.nativeElement.value;
     const update = this.taskUpdateRef.nativeElement.value;
     this.dataService.createProcessUpdate(task, update);
-    this.dataService.saveData();
     this.updateArray();
     this.taskNameRef.nativeElement.value = '';
     this.taskUpdateRef.nativeElement.value = '';

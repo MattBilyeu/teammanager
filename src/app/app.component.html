@@ -6,16 +6,18 @@
 </nav>
 <div *ngIf="loggedIn === false">
     <label>Name: </label>
-    <input type="text" #name>
+    <input type="text" #userName>
+    <label>Password: </label>
+    <input type="password" #password>
     <label>Team: </label>
     <select #teamName>
         <option *ngFor="let teamName of allTeamNames">{{ teamName }}</option>
     </select>
     <label>Role: </label>
     <select #role>
-        <option>user</option>
-        <option>manager</option>
-        <option>admin</option>
+        <option>User</option>
+        <option>Manager</option>
+        <option>Admin</option>
     </select>
     <button type="submit" (click)="onLogIn()">Log In</button>
 </div>

@@ -14,5 +14,6 @@ export class AddRemoveTaskComponent {
 
   onRemoveTask() {
     this.dataService.tasks.splice(this.index,1);
+    this.dataService.saveData();
   }
 }

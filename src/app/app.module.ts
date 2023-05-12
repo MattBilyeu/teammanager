@@ -24,6 +24,9 @@ import { AddRemoveTasksComponent } from './manager-dashboard/add-remove-tasks/ad
 import { AddRemoveTaskComponent } from './manager-dashboard/add-remove-tasks/add-remove-task/add-remove-task.component';
 import { AllTipsComponent } from './all-tips/all-tips.component';
 import { AllUpdatesComponent } from './all-updates/all-updates.component';
+import { AdminRegistrationComponent } from './manager-dashboard/registration/admin-registration/admin-registration.component';
+import { ChangePasswordComponent } from './manager-dashboard/registration/change-password/change-password.component';
+import { LoginService } from './login.service';
 
 @NgModule({
   declarations: [
@@ -46,13 +49,15 @@ import { AllUpdatesComponent } from './all-updates/all-updates.component';
     AddRemoveTasksComponent,
     AddRemoveTaskComponent,
     AllTipsComponent,
-    AllUpdatesComponent
+    AllUpdatesComponent,
+    AdminRegistrationComponent,
+    ChangePasswordComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule
   ],
-  providers: [DataService, UpdateMemberService, DataService, UpdateMemberService],
+  providers: [DataService, UpdateMemberService, DataService, LoginService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
