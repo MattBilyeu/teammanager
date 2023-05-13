@@ -46,6 +46,10 @@ export class AppComponent implements OnInit {
     this.router.navigate(['/all-updates']);
   }
 
+  onChangePassword() {
+    this.router.navigate(['/change-password']);
+  }
+
   onLogOut() {
     this.loggedIn = false;
   }
@@ -54,23 +58,20 @@ export class AppComponent implements OnInit {
     const role = this.roleRef.nativeElement.value;
     const userName = this.userNameRef.nativeElement.value;
     const password = this.passwordRef.nativeElement.value;
-    let teamName;
-    if(this.teamNameRef.nativeElement.value !== undefined) {
-      teamName = this.teamNameRef.nativeElement.value;
-    }
+    const teamName = this.teamNameRef.nativeElement.value;
     if(role === 'Admin') {
       this.loginService.loginAdmin(userName, password);
-      if(this.dataService.loggedIn) {
+      if(this.dataService.loggedIn === true) {
         this.onHome();
       };
     } else if (role === 'Manager') {
       this.loginService.loginManager(userName, teamName, password);
-      if(this.dataService.loggedIn) {
+      if(this.dataService.loggedIn === true) {
         this.onHome();
       };
     } else if (role === 'User') {
       this.loginService.loginUser(userName, teamName, password);
-      if(this.dataService.loggedIn) {
+      if(this.dataService.loggedIn === true) {
         this.onHome();
       };
     } else {

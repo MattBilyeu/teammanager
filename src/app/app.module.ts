@@ -25,7 +25,7 @@ import { AddRemoveTaskComponent } from './manager-dashboard/add-remove-tasks/add
 import { AllTipsComponent } from './all-tips/all-tips.component';
 import { AllUpdatesComponent } from './all-updates/all-updates.component';
 import { AdminRegistrationComponent } from './manager-dashboard/registration/admin-registration/admin-registration.component';
-import { ChangePasswordComponent } from './manager-dashboard/registration/change-password/change-password.component';
+import { ChangePasswordComponent } from './change-password/change-password.component';
 import { LoginService } from './login.service';
 
 @NgModule({

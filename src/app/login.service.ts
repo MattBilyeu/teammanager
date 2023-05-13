@@ -18,10 +18,11 @@ export class LoginService {
 
     loginAdmin(userName, password) {
         const admins = this.dataService.admins;
-        const result = this.verifyLoginCredentials(admins, userName, password);
-        if (result !== false) {
+        if (this.verifyLoginCredentials(admins, userName, password)) {
           this.dataService.user = userName;
           this.dataService.userRole = 'Admin';
+        } else {
+            alert('Login failed, contact an administrator');
         }
     }
 
