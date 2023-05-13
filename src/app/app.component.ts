@@ -16,6 +16,7 @@ export class AppComponent implements OnInit {
   @ViewChild('password') passwordRef;
   loggedIn: boolean = false;
   allTeamNames: string[] = [];
+  tabSelected: string = 'home';
 
   constructor(private dataService: DataService,
               private router: Router,
@@ -36,22 +37,27 @@ export class AppComponent implements OnInit {
     } else {
       this.router.navigate(['/users']);
     }
+    this.tabSelected = 'home';
   }
 
   onAllTips() {
     this.router.navigate(['/all-tips']);
+    this.tabSelected = 'allTips';
   }
 
   onAllUpdates() {
     this.router.navigate(['/all-updates']);
+    this.tabSelected = 'allUpdates';
   }
 
   onChangePassword() {
     this.router.navigate(['/change-password']);
+    this.tabSelected = 'changePassword';
   }
 
   onLogOut() {
     this.loggedIn = false;
+    this.tabSelected = '';
   }
 
   onLogIn() {
@@ -78,5 +84,13 @@ export class AppComponent implements OnInit {
       alert('Role error, contact administrator.')
     }
     this.loggedIn = this.dataService.loggedIn;
+  }
+
+  getClass(button) {
+    if (button === this.tabSelected) {
+      return 'selected'
+    } else {
+      return ''
+    }
   }
 }

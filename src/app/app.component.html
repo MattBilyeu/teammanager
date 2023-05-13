@@ -1,25 +1,37 @@
-<nav *ngIf="loggedIn === true">
-    <button (click)="onHome()">Home</button>
-    <button (click)="onAllTips()">All Tips</button>
-    <button (click)="onAllUpdates()">All Updates</button>
-    <button (click)="onChangePassword()">Change Password</button>
-    <button (click)="onLogOut()">Log Out</button>
+<nav>
+    <div class="navFlex">
+        <button [ngClass]="getClass('home')" (click)="onHome()">Home</button>
+        <button [ngClass]="getClass('allTips')" (click)="onAllTips()">All Tips</button>
+        <button [ngClass]="getClass('allUpdates')" (click)="onAllUpdates()">All Updates</button>
+        <button [ngClass]="getClass('changePassword')" (click)="onChangePassword()">Change Password</button>
+    </div>
+    <button class="logOut" (click)="onLogOut()">Log Out</button>
 </nav>
-<div *ngIf="loggedIn === false">
-    <label>Name: </label>
-    <input type="text" #userName>
-    <label>Password: </label>
-    <input type="password" #password>
-    <label>Team: </label>
-    <select #teamName>
-        <option *ngFor="let teamName of allTeamNames">{{ teamName }}</option>
-    </select>
-    <label>Role: </label>
-    <select #role>
-        <option>User</option>
-        <option>Manager</option>
-        <option>Admin</option>
-    </select>
-    <button type="submit" (click)="onLogIn()">Log In</button>
+<div class="loginForm" *ngIf="loggedIn === false">
+    <div class="formContainer">
+        <div>
+            <label>Name: </label>
+            <input type="text" #userName>
+        </div>
+        <div>
+            <label>Password: </label>
+            <input type="password" #password>
+        </div>
+        <div>
+            <label>Team: </label>
+            <select #teamName>
+                <option *ngFor="let teamName of allTeamNames">{{ teamName }}</option>
+            </select>
+            <label>Role: </label>
+            <select #role>
+                <option>User</option>
+                <option>Manager</option>
+                <option>Admin</option>
+            </select>
+        </div>
+        <div>
+            <button type="submit" (click)="onLogIn()">Log In</button>
+        </div>
+    </div>
 </div>
 <router-outlet *ngIf="loggedIn === true"></router-outlet>
