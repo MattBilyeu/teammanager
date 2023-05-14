@@ -9,15 +9,11 @@
 </nav>
 <div class="loginForm" *ngIf="loggedIn === false">
     <div class="formContainer">
-        <div>
+        <div class="formGridContainer">
             <label>Name: </label>
             <input type="text" #userName>
-        </div>
-        <div>
             <label>Password: </label>
             <input type="password" #password>
-        </div>
-        <div>
             <label>Team: </label>
             <select #teamName>
                 <option *ngFor="let teamName of allTeamNames">{{ teamName }}</option>
@@ -29,9 +25,7 @@
                 <option>Admin</option>
             </select>
         </div>
-        <div>
-            <button type="submit" (click)="onLogIn()">Log In</button>
-        </div>
+        <button class="submit" type="submit" (click)="onLogIn()">Log In</button>
     </div>
 </div>
 <router-outlet *ngIf="loggedIn === true"></router-outlet>
