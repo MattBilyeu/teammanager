@@ -7,10 +7,26 @@
     font-family: sans-serif;
 }
 
+html,
+body {
+    height: 100%;
+    width: 100%;
+}
+
 body {
     margin: 0;
 }
 
 .strike {
     text-decoration: line-through;
+}
+
+.hide {
+    display: none !important;
+}
+
+h1 {
+    font-size: 1.5rem;
+    text-decoration: underline;
+    color: var(--primary-color);
 }

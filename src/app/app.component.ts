@@ -17,6 +17,7 @@ export class AppComponent implements OnInit {
   loggedIn: boolean = false;
   allTeamNames: string[] = [];
   tabSelected: string = 'home';
+  displayMobileNav: boolean = false;
 
   constructor(private dataService: DataService,
               private router: Router,
@@ -27,6 +28,8 @@ export class AppComponent implements OnInit {
     this.dataService.allTeams.forEach((team)=> {
       this.allTeamNames.push(team.teamName);
     })
+    //for devo purposes
+    this.loggedIn = true;
   }
 
   onHome() {
@@ -92,5 +95,9 @@ export class AppComponent implements OnInit {
     } else {
       return ''
     }
+  }
+
+  displayMobile() {
+    this.displayMobileNav = !this.displayMobileNav;
   }
 }

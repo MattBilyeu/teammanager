@@ -1,11 +1,24 @@
-<nav>
-    <div class="navFlex">
-        <button [ngClass]="getClass('home')" (click)="onHome()">Home</button>
-        <button [ngClass]="getClass('allTips')" (click)="onAllTips()">All Tips</button>
-        <button [ngClass]="getClass('allUpdates')" (click)="onAllUpdates()">All Updates</button>
-        <button [ngClass]="getClass('changePassword')" (click)="onChangePassword()">Change Password</button>
+<nav *ngIf="loggedIn === true">
+    <div class="mobileNav" (click)="displayMobile()">
+        <div></div>
+        <div></div>
+        <div></div>
     </div>
-    <button class="logOut" (click)="onLogOut()">Log Out</button>
+    <div [ngClass]="{'hide': !displayMobileNav}" class="mobileBackdrop" (click)="displayMobile()">
+        <button (click)="onHome()">Home</button>
+        <button (click)="onAllTips()">All Tips</button>
+        <button (click)="onAllUpdates()">All Updates</button>
+        <button (click)="onChangePassword()">Change Password</button>
+    </div>
+    <div class="desktopNav">
+        <div class="navFlex">
+            <button [ngClass]="getClass('home')" (click)="onHome()">Home</button>
+            <button [ngClass]="getClass('allTips')" (click)="onAllTips()">All Tips</button>
+            <button [ngClass]="getClass('allUpdates')" (click)="onAllUpdates()">All Updates</button>
+            <button [ngClass]="getClass('changePassword')" (click)="onChangePassword()">Change Password</button>
+        </div>
+        <button class="logOut" (click)="onLogOut()">Log Out</button>
+    </div>
 </nav>
 <div class="loginForm" *ngIf="loggedIn === false">
     <div class="formContainer">
