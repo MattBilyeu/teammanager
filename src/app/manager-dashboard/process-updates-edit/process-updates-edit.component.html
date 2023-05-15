@@ -1,12 +1,18 @@
+<h1>Process Updates</h1>
 <app-process-update *ngFor="let update of processUpdates; let i = index" 
                     [update]="update" 
                     [dashboard]="'mgr'" 
                     [index]="i" 
                     (updateDeleted)="updateArray()">
 </app-process-update>
+<p *ngIf="processUpdates.length === 0">No updates yet.</p>
 <br>
-<label>Task: </label>
-<input type="text" #taskName>
-<label>Update: </label>
-<input type="text" #taskUpdate>
+<h1>Add an Update</h1>
+<div class="twoColumnGrid">
+    <label>Task: </label>
+    <input type="text" #taskName>
+    <label>Update: </label>
+    <input type="text" #taskUpdate>
+</div>
+<br>
 <button type="submit" (click)="onSubmit()">Submit</button>

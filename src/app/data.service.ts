@@ -68,27 +68,35 @@ export class DataService {
     }
 
     createTeam(managerName: string, mgrPassword: string, teamName: string) {
-        const newTeam: Team = new Team ([], [], [], [], [{name: managerName, password: mgrPassword}], teamName);
-        console.log(this.allTeams);
-        this.allTeams.push(newTeam);
+        this.teamMembers = [];
+        this.dailyTips = [];
+        this.processUpdates = [];
+        this.tasks = [];
+        this.manager = [{name: managerName, password: mgrPassword}] 
+        this.teamName = teamName;
         this.saveData();
     }
 
     //uses web storage for now, can eventually be hooked up to a database.
     saveData() {
         this.loadData();
+        let teamFound: boolean = false;
         const team = new Team(this.teamMembers, this.dailyTips, this.processUpdates, this.tasks, this.manager, this.teamName);
         for (let i = 0; i < this.allTeams.length; i++) {
             if(this.allTeams[i].teamName === team.teamName) {
                 this.allTeams[i] = team;
+                teamFound = true;
             }
         }
+        if (!teamFound) {
+            this.allTeams.push(team);
+        }
         let data = this.allTeams;
-        localStorage.setItem('data2', JSON.stringify(data));
+        localStorage.setItem('data3', JSON.stringify(data));
     }
 
     loadData() {
-        const dataString = localStorage.getItem('data2');
+        const dataString = localStorage.getItem('data3');
         if (dataString !== null && dataString !== '') {
             try {
                 const data: Team[] = JSON.parse(dataString);

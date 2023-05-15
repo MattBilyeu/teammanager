@@ -29,7 +29,7 @@ export class AppComponent implements OnInit {
       this.allTeamNames.push(team.teamName);
     })
     //for devo purposes
-    this.loggedIn = true;
+    //this.loggedIn = true;
   }
 
   onHome() {

@@ -1,6 +1,14 @@
-<h1>{{ update.task }}</h1>
-<h3>{{ update.info }}</h3>
-<ol *ngIf="dashboard == 'mgr'">Not Acknowledged By: 
-    <li *ngFor="let member of membersNotRead">{{ member.name }}</li>
-</ol>
-<button *ngIf="dashboard === 'mgr'" (click)="onDelete(index)">Delete Update</button>
+<div *ngIf="dashboard === 'User'">
+    <h2>{{ update.task }}</h2>
+    <h3>{{ update.info }}</h3>
+</div>
+<div *ngIf="dashboard === 'Manager' && membersNotRead.length > 0">
+    <h2>{{ update.task }}</h2>
+    <h3>{{ update.info }}</h3>
+    <div *ngIf="membersNotRead.length > 0">
+        <ol>Not Acknowledged By: 
+            <li *ngFor="let member of membersNotRead">{{ member.name }}</li>
+        </ol>
+    </div>
+    <button (click)="onDelete(index)">Delete Update</button>
+</div>
