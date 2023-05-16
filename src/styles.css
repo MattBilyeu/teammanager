@@ -54,6 +54,12 @@ p {
     margin-right: 0 2rem 0 2rem;
 }
 
+.pOnGrey {
+    font-size: 1.2rem;
+    color: white;
+    filter: brightness(140%)
+}
+
 .primaryTextColor {
     color: var(--primary-color);
 }

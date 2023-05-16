@@ -22,4 +22,12 @@ export class AllUpdatesComponent implements OnInit {
     this.dataService.processUpdates.splice(index,1);
     this.dataService.saveData();
   }
+
+  getClass(index: number) {
+    if (index % 2 == 0) {
+      return ''
+    } else {
+      return 'grey'
+    }
+  }
 }

@@ -1,4 +1,4 @@
-<div *ngFor="let update of processUpdates; let i = index">
+<div class="component" *ngFor="let update of processUpdates; let i = index">
     <div *ngIf="!updateRead(update)">
         <app-process-update [update]="update"></app-process-update>
         <button (click)="onAcknowledged(i)">Mark as Read</button>

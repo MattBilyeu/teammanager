@@ -1,8 +1,10 @@
-<h1>Add/Remove Tasks</h1>
-<div class="twoColumnGrid">
-    <label>Add Task:</label>
-    <input type="text" #task>
+<div class="component">
+    <h1>Add/Remove Tasks</h1>
+    <div class="twoColumnGrid">
+        <label>Add Task:</label>
+        <input type="text" #task>
+    </div>
+    <button type="submit" (click)="onSubmit()">Submit</button>
+    <h2>Remove Tasks</h2>
+    <app-add-remove-task *ngFor="let task of tasks; let i = index" [index]="i" [task]="task"></app-add-remove-task>   
 </div>
-<button type="submit" (click)="onSubmit()">Submit</button>
-<h2>Remove Tasks</h2>
-<app-add-remove-task *ngFor="let task of tasks; let i = index" [index]="i" [task]="task"></app-add-remove-task>

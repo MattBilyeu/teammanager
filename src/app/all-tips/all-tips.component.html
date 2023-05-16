@@ -1,4 +1,4 @@
 <div *ngFor="let tip of tips; let i = index" [ngClass]="getClass(i)">
     <h1>Category: {{ tip.category }}</h1>
-    <p>{{ tip.tip }}</p>
+    <p [ngClass]="{'pOnGrey': getClass(i) === 'grey'}">{{ tip.tip }}</p>
 </div>

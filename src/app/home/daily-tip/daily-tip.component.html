@@ -1,6 +1,6 @@
-<div class="twoColumnGrid" *ngIf="tipFound">
+<div class="twoColumnGrid grey component" *ngIf="tipFound">
     <h1>Daily Tip</h1>
     <h3>Category: {{ tip.category }}</h3>
-    <p>{{ tip.tip }}</p>
+    <p class="pOnGrey">{{ tip.tip }}</p>
     <app-daily-tip-edit *ngIf="userRole === 'manager' || userRole === 'admin'"></app-daily-tip-edit>
 </div>

@@ -1,18 +1,20 @@
-<h1>Process Updates</h1>
-<app-process-update *ngFor="let update of processUpdates; let i = index" 
-                    [update]="update" 
-                    [dashboard]="'Manager'" 
-                    [index]="i" 
-                    (updateDeleted)="updateArray()">
-</app-process-update>
-<p *ngIf="processUpdates.length === 0">No updates yet.</p>
-<br>
-<h2>Add an Update</h2>
-<div class="twoColumnGrid">
-    <label>Task: </label>
-    <input type="text" #taskName>
-    <label>Update: </label>
-    <input type="text" #taskUpdate>
+<div class="component">
+    <h1>Process Updates</h1>
+    <app-process-update *ngFor="let update of processUpdates; let i = index" 
+                        [update]="update" 
+                        [dashboard]="'Manager'" 
+                        [index]="i" 
+                        (updateDeleted)="updateArray()">
+    </app-process-update>
+    <p *ngIf="processUpdates.length === 0">No updates yet.</p>
+    <br>
+    <h2>Add an Update</h2>
+    <div class="twoColumnGrid">
+        <label>Task: </label>
+        <input type="text" #taskName>
+        <label>Update: </label>
+        <input type="text" #taskUpdate>
+    </div>
+    <br>
+    <button type="submit" (click)="onSubmit()">Submit</button>
 </div>
-<br>
-<button type="submit" (click)="onSubmit()">Submit</button>
