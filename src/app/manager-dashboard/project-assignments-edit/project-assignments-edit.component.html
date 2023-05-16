@@ -1,1 +1,8 @@
-<app-member-assignments *ngFor=" let member of teamMembers; let i = index" [index]="i" [member]="member"></app-member-assignments>
+<div class="grey">
+    <h1>Assign Tasks</h1>
+    <app-member-assignments 
+        *ngFor=" let member of teamMembers; let i = index" 
+        [index]="i" 
+        [member]="member">
+    </app-member-assignments>
+</div>

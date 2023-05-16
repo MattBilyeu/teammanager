@@ -16,4 +16,12 @@ export class AllTipsComponent implements OnInit {
     this.tips = this.dataService.dailyTips;
   }
 
+  getClass(index: number) {
+    if (index % 2 == 0) {
+      return ''
+    } else {
+      return 'grey'
+    }
+  }
+
 }

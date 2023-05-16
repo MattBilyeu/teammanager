@@ -1,0 +1,13 @@
+.taskGrid {
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    column-gap: 2px;
+    row-gap: 2px;
+    width: 85%;
+    align-content: center;
+    margin-bottom: 0.5rem;
+}
+
+.taskGrid button {
+    justify-self: left;
+}

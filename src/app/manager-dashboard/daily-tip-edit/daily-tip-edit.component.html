@@ -1,9 +1,10 @@
-<h1>Add Daily Tips</h1>
-<div class="twoColumnGrid">
-    <label>Category</label>
-    <input type="text" #category>
-    <label>Tip</label>
-    <input type="text" #tip>
+<div class="grey">
+    <h1>Add Daily Tips</h1>
+    <div class="twoColumnGrid">
+        <label class="primaryTextColor">Category</label>
+        <input type="text" #category>
+        <label class="primaryTextColor">Tip</label>
+        <input type="text" #tip>
+    </div>
+    <button (click)="onSubmit()">Submit Tip</button>
 </div>
-<br>
-<button (click)="onSubmit()">Submit Tip</button>

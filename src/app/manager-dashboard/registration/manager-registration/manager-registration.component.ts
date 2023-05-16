@@ -9,15 +9,14 @@ import { DataService } from 'src/app/data.service';
 export class ManagerRegistrationComponent {
   @ViewChild('managerName') mgrNameRef;
   @ViewChild('teamName') teamNameRef;
-  @ViewChild('mgrPassWord') mgrPWRef;
+  managerPassword: string = 'Password';
 
   constructor(private dataService: DataService) {}
 
   onSubmit() {
     const mgrName = this.mgrNameRef.nativeElement.value;
-    const mgrPW = 'Password';
     const teamName = this.teamNameRef.nativeElement.value;
-    this.dataService.createTeam(mgrName, mgrPW, teamName);
+    this.dataService.createTeam(mgrName, this.managerPassword, teamName);
   }
 
   onDelete() {

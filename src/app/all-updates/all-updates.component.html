@@ -1,4 +1,5 @@
-<div *ngFor="let update of updates">
+<div *ngFor="let update of updates; let i = index">
     <h1>Task: {{ update.task }}</h1>
     <p>{{ update.info }}</p>
+    <button *ngIf="userRole === 'Manager'" (click)="onDelete(i)">Delete Update</button>
 </div>

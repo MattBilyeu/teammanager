@@ -1,0 +1,13 @@
+.memberGrid {
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    column-gap: 2px;
+    row-gap: 2px;
+    width: 100%;
+    align-content: center;
+    margin: 0 0.5rem 2rem 0.5rem;
+}
+
+.memberGrid button {
+    justify-self: center;
+}

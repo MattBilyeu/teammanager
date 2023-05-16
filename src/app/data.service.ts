@@ -86,9 +86,11 @@ export class DataService {
             if(this.allTeams[i].teamName === team.teamName) {
                 this.allTeams[i] = team;
                 teamFound = true;
+                console.log('team saved');
             }
         }
         if (!teamFound) {
+            console.log('added team')
             this.allTeams.push(team);
         }
         let data = this.allTeams;

@@ -9,11 +9,17 @@ import { DataService } from '../data.service';
 })
 export class AllUpdatesComponent implements OnInit {
   updates: Update[];
+  userRole: string;
 
   constructor(private dataService: DataService) {}
 
   ngOnInit() {
     this.updates = this.dataService.processUpdates;
+    this.userRole = this.dataService.userRole;
   }
 
+  onDelete(index) {
+    this.dataService.processUpdates.splice(index,1);
+    this.dataService.saveData();
+  }
 }

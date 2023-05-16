@@ -1,18 +1,18 @@
 <div>
-    <h4>{{ member.name }}</h4>
-    <label>Current Primary Task: {{ member.primaryAssignment }}</label>
-    <br>
-    <label>New Primary: </label>
-    <select #primary>
-        <option *ngFor="let task of taskList">{{ task }}</option>
-    </select>
-    <br>
-    <label>Current Secondary Task: {{ member.secondaryAssignment }}</label>
-    <br>
-    <label>New Secondary: </label>
-    <select #secondary>
-        <option *ngFor="let task of taskList">{{ task }}</option>
-    </select>
-    <br>
+    <h2 class="hTwoOnGrey">{{ member.name }}</h2>
+    <h3 class="taskLabel primaryTextColor">Primary Task: {{ member.primaryAssignment }}</h3>
+    <div class="twoColumnGrid">
+        <label class="primaryTextColor">Change: </label>
+        <select #primary>
+            <option *ngFor="let task of taskList">{{ task }}</option>
+        </select>
+    </div>
+    <h3 class="primaryTextColor">Secondary Task: {{ member.secondaryAssignment }}</h3>
+    <div class="twoColumnGrid">
+        <label class="primaryTextColor">Change: </label>
+        <select #secondary>
+            <option *ngFor="let task of taskList">{{ task }}</option>
+        </select>
+    </div>
     <button type="submit" (click)="onSubmit()">Submit</button>
 </div>

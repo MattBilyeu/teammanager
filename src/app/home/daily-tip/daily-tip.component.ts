@@ -9,13 +9,17 @@ import { DataService } from '../../data.service';
 export class DailyTipComponent implements OnInit {
   @Input() userRole: string = '';
   tip: {category: string, tip: string};
+  tipFound: boolean = false;
 
   constructor(private dataService: DataService) {}
   
   ngOnInit() {
-    const tips = this.dataService.dailyTips;
-    const randomTip = tips[Math.floor(Math.random()*tips.length)];
-    this.tip = randomTip;
+    if(this.dataService.dailyTips.length !== 0) {
+      const tips = this.dataService.dailyTips;
+      const randomTip = tips[Math.floor(Math.random()*tips.length)];
+      this.tip = randomTip;
+      this.tipFound = true;
+    }
   }
 
 }
