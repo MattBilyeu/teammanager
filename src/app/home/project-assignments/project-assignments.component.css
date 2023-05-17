@@ -1,13 +1,22 @@
-#gridContainer {
-    margin: 1rem 0 0 0;
-    display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    grid-template-rows: repeat(2, 2rem);
-    padding: 1rem;
-    border: 0.1rem solid black;
-    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+@media screen and (min-width: 800px) {
+    #assignmentContainer {
+        margin: 1rem 0 0 0;
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        grid-template-rows: repeat(2, 2rem);
+        padding: 1rem;
+        border: 0.1rem solid black;
+        box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    }
 }
 
-#gridContainer label {
+#assignmentContainer {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(6, 2rem);
+    grid-auto-flow: column;
+}
+
+#assignmentContainer label {
     text-decoration: underline;
 }

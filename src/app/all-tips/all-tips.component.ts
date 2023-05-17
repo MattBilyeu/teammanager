@@ -9,11 +9,13 @@ import { Tip } from '../models/tip.model';
 })
 export class AllTipsComponent implements OnInit {
   tips: Tip[];
+  userRole: string;
 
   constructor(private dataService: DataService) {}
 
   ngOnInit() {
     this.tips = this.dataService.dailyTips;
+    this.userRole = this.dataService.userRole;
   }
 
   getClass(index: number) {
@@ -22,6 +24,12 @@ export class AllTipsComponent implements OnInit {
     } else {
       return 'grey'
     }
+  }
+
+  onDelete(index: number) {
+    this.dataService.dailyTips.splice(index,1);
+    this.dataService.saveData();
+    this.tips = this.dataService.dailyTips;
   }
 
 }

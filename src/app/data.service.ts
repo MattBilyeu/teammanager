@@ -94,11 +94,11 @@ export class DataService {
             this.allTeams.push(team);
         }
         let data = this.allTeams;
-        localStorage.setItem('data3', JSON.stringify(data));
+        localStorage.setItem('data4', JSON.stringify(data));
     }
 
     loadData() {
-        const dataString = localStorage.getItem('data3');
+        const dataString = localStorage.getItem('data4');
         if (dataString !== null && dataString !== '') {
             try {
                 const data: Team[] = JSON.parse(dataString);

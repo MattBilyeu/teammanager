@@ -18,6 +18,7 @@ export class AppComponent implements OnInit {
   allTeamNames: string[] = [];
   tabSelected: string = 'home';
   displayMobileNav: boolean = false;
+  userRole: string;
 
   constructor(private dataService: DataService,
               private router: Router,
@@ -60,6 +61,9 @@ export class AppComponent implements OnInit {
 
   onLogOut() {
     this.loggedIn = false;
+    this.dataService.loggedIn = false;
+    this.userRole = undefined;
+    this.dataService.loadData();
     this.tabSelected = '';
   }
 
@@ -87,6 +91,7 @@ export class AppComponent implements OnInit {
       alert('Role error, contact administrator.')
     }
     this.loggedIn = this.dataService.loggedIn;
+    this.userRole = this.dataService.userRole;
   }
 
   getClass(button) {

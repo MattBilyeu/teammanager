@@ -1,5 +1,5 @@
-<app-daily-tip-edit></app-daily-tip-edit>
-<app-process-updates-edit></app-process-updates-edit>
-<app-project-assignments-edit></app-project-assignments-edit>
-<app-add-remove-tasks></app-add-remove-tasks>
+<app-daily-tip-edit *ngIf="dashboard === 'Manager'"></app-daily-tip-edit>
+<app-process-updates-edit *ngIf="dashboard === 'Manager'"></app-process-updates-edit>
+<app-project-assignments-edit *ngIf="dashboard === 'Manager'"></app-project-assignments-edit>
+<app-add-remove-tasks *ngIf="dashboard === 'Manager'"></app-add-remove-tasks>
 <app-registration></app-registration>

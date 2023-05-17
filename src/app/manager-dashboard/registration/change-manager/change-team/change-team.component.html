@@ -1,11 +1,18 @@
+<h1>Change Managers</h1>
 <div>
-    <label>Team Name: {{ teamName }}</label>
-    <select #managerSelection>
-        <option *ngFor="let manager of managers">{{ manager.name }}</option>
-    </select>
+    <div class="twoColumnGrid">
+        <label>{{ teamName }}</label>
+        <select #managerSelection>
+            <option *ngFor="let manager of managers">{{ manager.name }}</option>
+        </select>
+    </div>
     <button type="submit" (click)="onRemoveManager()">Remove Manager</button>
-    <label>Add Manager: </label>
-    <input type="text" #addManager>
+    <hr>
+    <div class="twoColumnGrid">
+        <label>Add Manager: </label>
+        <input type="text" #addManager>
+    </div>
     <button type="submit" (click)="onAddManager()">Add Manager</button>
-    <button type="submit" (click)="onDelete()">Delete Team</button>
+    <hr>
+    <button class="deleteButton" type="submit" (click)="onDelete()">Delete {{ teamName }}</button>
 </div>

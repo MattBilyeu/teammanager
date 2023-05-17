@@ -1,3 +1,4 @@
+<h1>Process Updates</h1>
 <div class="component" *ngFor="let update of processUpdates; let i = index">
     <div *ngIf="!updateRead(update)">
         <app-process-update [update]="update"></app-process-update>

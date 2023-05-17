@@ -1,5 +1,10 @@
-<label>Manager Name:</label>
-<input type="text" #managerName>
-<label>Team Name:</label>
-<input type="text" #teamName>
-<button type="submit" (click)="onSubmit()">Create Team</button>
+<div class="grey">
+    <h1>Register Team</h1>
+    <div class="twoColumnGrid">
+        <label class="primaryTextColor">Manager:</label>
+        <input type="text" #managerName>
+        <label class="primaryTextColor">Team Name:</label>
+        <input type="text" #teamName>
+    </div>
+    <button type="submit" (click)="onSubmit()">Create Team</button>
+</div>
