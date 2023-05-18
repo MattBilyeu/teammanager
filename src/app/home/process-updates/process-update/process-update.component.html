@@ -1,6 +1,6 @@
 <div *ngIf="dashboard !== 'Manager' && dashboard !== 'Admin'">
     <h2>{{ update.task }}</h2>
-    <h3>{{ update.info }}</h3>
+    <p>{{ update.info }}</p>
 </div>
 <div *ngIf="dashboard === 'Manager' && membersNotRead.length > 0">
     <h2>{{ update.task }}</h2>

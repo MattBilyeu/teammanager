@@ -1,0 +1,7 @@
+.gridContainer {
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    grid-template-rows: repeat(2, auto);
+    grid-template-areas:    "one two three"
+                            "four five three";
+}

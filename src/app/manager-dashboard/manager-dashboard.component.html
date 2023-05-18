@@ -1,5 +1,18 @@
-<app-daily-tip-edit *ngIf="dashboard === 'Manager'"></app-daily-tip-edit>
-<app-process-updates-edit *ngIf="dashboard === 'Manager'"></app-process-updates-edit>
-<app-project-assignments-edit *ngIf="dashboard === 'Manager'"></app-project-assignments-edit>
-<app-add-remove-tasks *ngIf="dashboard === 'Manager'"></app-add-remove-tasks>
-<app-registration></app-registration>
+<div *ngIf="dashboard === 'Manager'" class="gridContainer">
+    <div class="assignTasks">
+        <app-project-assignments-edit></app-project-assignments-edit>
+    </div>
+    <div class="dTips">
+        <app-daily-tip-edit></app-daily-tip-edit>
+    </div>
+    <div class="pUpdates">
+        <app-process-updates-edit></app-process-updates-edit>
+    </div>
+    <div class="addTasks">
+        <app-add-remove-tasks></app-add-remove-tasks>
+    </div>
+    <div class="addUser">
+        <app-registration></app-registration>
+    </div>
+</div>
+<app-registration *ngIf="dashboard === 'Admin'"></app-registration>

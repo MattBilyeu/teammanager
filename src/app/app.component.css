@@ -102,6 +102,10 @@ nav {
         text-align: center;
         width: 30%;
     }
+
+    .loginForm label {
+        font-weight: bold;
+    }
     
     .formContainer {
         margin-top: 3rem;

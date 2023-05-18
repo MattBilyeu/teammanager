@@ -1,4 +1,12 @@
 <app-user-registration *ngIf="userRole ==='Manager'"></app-user-registration>
-<app-manager-registration *ngIf="userRole === 'Admin'"></app-manager-registration>
-<app-change-manager *ngIf="userRole === 'Admin'"></app-change-manager>
-<app-admin-registration *ngIf="userRole === 'Admin'"></app-admin-registration>
+<div class="admin" *ngIf="userRole === 'Admin'">
+    <div class="gridItemOne">
+        <app-manager-registration></app-manager-registration>
+    </div>
+    <div class="gridItemTwo">
+        <app-change-manager></app-change-manager>
+    </div>
+    <div class="gridItemThree">
+        <app-admin-registration></app-admin-registration>
+    </div>
+</div>
