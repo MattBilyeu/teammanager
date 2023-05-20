@@ -42,4 +42,9 @@
         <button class="submit" type="submit" (click)="onLogIn()">Log In</button>
     </div>
 </div>
+<div id="demoInfo" *ngIf="loggedIn === false">
+    <h1 id="demoHeading">Demo</h1>
+    <p>You can login as an Admin with username/password "Admin"/"Admin".  
+        <br>Whenever a new user is created, their password defaults to "password."</p>
+</div>
 <router-outlet *ngIf="loggedIn === true"></router-outlet>

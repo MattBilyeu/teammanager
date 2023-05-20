@@ -1,7 +1,7 @@
-<h1>Change Managers</h1>
+<h1>{{ teamName }}</h1>
 <div>
     <div class="twoColumnGrid">
-        <label>{{ teamName }}</label>
+        <label>Manager:</label>
         <select #managerSelection>
             <option *ngFor="let manager of managers">{{ manager.name }}</option>
         </select>

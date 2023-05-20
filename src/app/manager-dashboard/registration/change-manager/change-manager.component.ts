@@ -26,6 +26,7 @@ export class ChangeManagerComponent implements OnInit {
         this.dataService.saveData();
       }
     }
+    this.updateTeams();
   }
 
   onAddManager(index: number){
@@ -33,6 +34,7 @@ export class ChangeManagerComponent implements OnInit {
     this.dataService.allTeams[index].manager.push({name: name, password: ''});
     this.teams = this.dataService.allTeams;
     this.dataService.saveData();
+    this.updateTeams();
   }
 
   onDelete(index: number) {
@@ -40,6 +42,11 @@ export class ChangeManagerComponent implements OnInit {
     if(verify) {
       this.dataService.allTeams.splice(index,1);
       this.dataService.saveData();
+      this.updateTeams();
     }
+  }
+
+  updateTeams() {
+    this.teams = this.dataService.allTeams;
   }
 }

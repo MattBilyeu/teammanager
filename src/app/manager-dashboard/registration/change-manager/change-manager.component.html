@@ -2,6 +2,7 @@
     <app-change-team 
         [teamName]="team.teamName" 
         [managers]="team.manager"
-        [index]="i">
+        [index]="i"
+        (teamUpdated)="updateTeams()">
     </app-change-team>
 </div>

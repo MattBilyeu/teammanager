@@ -80,18 +80,20 @@ export class DataService {
     //uses web storage for now, can eventually be hooked up to a database.
     saveData() {
         this.loadData();
-        let teamFound: boolean = false;
-        const team = new Team(this.teamMembers, this.dailyTips, this.processUpdates, this.tasks, this.manager, this.teamName);
-        for (let i = 0; i < this.allTeams.length; i++) {
-            if(this.allTeams[i].teamName === team.teamName) {
-                this.allTeams[i] = team;
-                teamFound = true;
-                console.log('team saved');
+        if(this.userRole !== 'Admin') {
+            let teamFound: boolean = false;
+            const team = new Team(this.teamMembers, this.dailyTips, this.processUpdates, this.tasks, this.manager, this.teamName);
+            for (let i = 0; i < this.allTeams.length; i++) {
+                if(this.allTeams[i].teamName === team.teamName) {
+                    this.allTeams[i] = team;
+                    teamFound = true;
+                    console.log('team saved');
+                }
             }
-        }
-        if (!teamFound) {
-            console.log('added team')
-            this.allTeams.push(team);
+            if (!teamFound) {
+                console.log('added team')
+                this.allTeams.push(team);
+            }
         }
         let data = this.allTeams;
         localStorage.setItem('data4', JSON.stringify(data));

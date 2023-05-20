@@ -1,7 +1,40 @@
-.gridContainer {
-    display: grid;
-    grid-template-columns: repeat(3, auto);
-    grid-template-rows: repeat(2, auto);
-    grid-template-areas:    "one two three"
-                            "four five three";
+@media screen and (min-width: 800px) {
+    .gridContainer {
+        margin-top: 1rem !important;
+        display: grid;
+        grid-template-columns: repeat(2, auto);
+        grid-template-rows: repeat(3, auto);
+        grid-template-areas:    "one two"
+                                "three four"
+                                "five five";
+        margin: 0 auto 0 auto;
+        row-gap: 1rem;
+        column-gap: 1rem;
+        justify-items: stretch;
+        align-items: center;
+        width: 95%;
+    }
+
+    .dTips {
+        grid-area: four;
+    }
+
+    .pUpdates {
+        grid-area: two;
+    }
+
+    .assignTasks {
+        grid-area: one;
+    }
+
+    .addTasks {
+        grid-area: three;
+    }
+
+    .addUser {
+        grid-area: five;
+        justify-self: center;
+        width: 45% !important;
+    }
 }
+

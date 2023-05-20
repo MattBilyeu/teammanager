@@ -1,0 +1,29 @@
+@media screen and (min-width: 800px) {
+    #gridContainer {
+        display: grid;
+        row-gap: 1rem;
+        column-gap: 1rem;
+        grid-template-rows: auto auto;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-areas: "one one" "two three";
+        margin: 1rem auto 0 auto;
+        justify-items: stretch;
+        width: 90%;
+    }
+
+    #gridContainer div {
+        width: 100%;
+    }
+
+    .dTip {
+        grid-area: two;
+    }
+
+    .pUpdates {
+        grid-area: three;
+    }
+
+    .pAssign {
+        grid-area: one;
+    }
+}

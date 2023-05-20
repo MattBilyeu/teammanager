@@ -68,6 +68,16 @@ nav {
     font-weight: bold;
 }
 
+#demoInfo {
+    position: relative;
+    top: 5rem;
+}
+
+#demoHeading {
+    color: var(--primary-color);
+    text-decoration: underline;
+}
+
 @media screen and (min-width: 800px) {
     .mobileNav {
         display: none;
