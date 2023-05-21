@@ -79,32 +79,43 @@ export class DataService {
 
     //uses web storage for now, can eventually be hooked up to a database.
     saveData() {
-        this.loadData();
         if(this.userRole !== 'Admin') {
-            let teamFound: boolean = false;
-            const team = new Team(this.teamMembers, this.dailyTips, this.processUpdates, this.tasks, this.manager, this.teamName);
-            for (let i = 0; i < this.allTeams.length; i++) {
-                if(this.allTeams[i].teamName === team.teamName) {
-                    this.allTeams[i] = team;
-                    teamFound = true;
-                    console.log('team saved');
-                }
-            }
-            if (!teamFound) {
-                console.log('added team')
-                this.allTeams.push(team);
+            this.loadData();
+        }
+        let teamFound: boolean = false;
+        const team = new Team(this.teamMembers, this.dailyTips, this.processUpdates, this.tasks, this.manager, this.teamName);
+        console.log('Team loaded into variable',team);
+        for (let i = 0; i < this.allTeams.length; i++) {
+            if(this.allTeams[i].teamName === team.teamName) {
+                this.allTeams[i] = team;
+                teamFound = true;
             }
         }
-        let data = this.allTeams;
-        localStorage.setItem('data4', JSON.stringify(data));
+        if (!teamFound && team.teamName !== undefined) {
+            this.allTeams.push(team);
+        }
+        console.log('all teams prior to save',this.allTeams);
+        let data = JSON.stringify(this.allTeams);
+        let adminData = JSON.stringify(this.admins);
+        localStorage.setItem('data5', data);
+        localStorage.setItem('admins', adminData);
     }
 
     loadData() {
-        const dataString = localStorage.getItem('data4');
+        const dataString = localStorage.getItem('data5');
+        const adminDataString = localStorage.getItem('admins');
         if (dataString !== null && dataString !== '') {
             try {
                 const data: Team[] = JSON.parse(dataString);
                 this.allTeams = data;
+            } catch (err) {
+                console.error('Error parsing data from localStorage', err);
+            }
+        }
+        if (adminDataString !== null && adminDataString !== '') {
+            try {
+                const adminData: Admin[] = JSON.parse(adminDataString);
+                this.admins = adminData;
             } catch (err) {
                 console.error('Error parsing data from localStorage', err);
             }

@@ -31,7 +31,7 @@ export class ChangeManagerComponent implements OnInit {
 
   onAddManager(index: number){
     const name = this.managerNameRef.nativeElement.value;
-    this.dataService.allTeams[index].manager.push({name: name, password: ''});
+    this.dataService.allTeams[index].manager.push({name: name, password: 'Password'});
     this.teams = this.dataService.allTeams;
     this.dataService.saveData();
     this.updateTeams();
