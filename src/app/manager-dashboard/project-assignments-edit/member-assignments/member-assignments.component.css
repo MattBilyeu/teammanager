@@ -6,3 +6,7 @@ select {
 .taskLabel {
     margin-bottom: 1rem;
 }
+
+div button:first-of-type {
+    margin-right: 1rem;
+}

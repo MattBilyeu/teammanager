@@ -84,7 +84,6 @@ export class DataService {
         }
         let teamFound: boolean = false;
         const team = new Team(this.teamMembers, this.dailyTips, this.processUpdates, this.tasks, this.manager, this.teamName);
-        console.log('Team loaded into variable',team);
         for (let i = 0; i < this.allTeams.length; i++) {
             if(this.allTeams[i].teamName === team.teamName) {
                 this.allTeams[i] = team;
@@ -94,7 +93,6 @@ export class DataService {
         if (!teamFound && team.teamName !== undefined) {
             this.allTeams.push(team);
         }
-        console.log('all teams prior to save',this.allTeams);
         let data = JSON.stringify(this.allTeams);
         let adminData = JSON.stringify(this.admins);
         localStorage.setItem('data5', data);

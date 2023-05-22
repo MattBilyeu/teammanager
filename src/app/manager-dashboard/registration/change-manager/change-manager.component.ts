@@ -36,16 +36,7 @@ export class ChangeManagerComponent implements OnInit {
     this.dataService.saveData();
     this.updateTeams();
   }
-
-  onDelete(index: number) {
-    let verify = confirm('Are you sure you want to delete this team?');
-    if(verify) {
-      this.dataService.allTeams.splice(index,1);
-      this.dataService.saveData();
-      this.updateTeams();
-    }
-  }
-
+  
   updateTeams() {
     this.teams = this.dataService.allTeams;
   }

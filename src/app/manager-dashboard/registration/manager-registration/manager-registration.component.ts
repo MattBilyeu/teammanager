@@ -17,19 +17,7 @@ export class ManagerRegistrationComponent {
     const mgrName = this.mgrNameRef.nativeElement.value;
     const teamName = this.teamNameRef.nativeElement.value;
     this.dataService.createTeam(mgrName, this.managerPassword, teamName);
+    this.mgrNameRef.nativeElement.value = '';
+    this.teamNameRef.nativeElement.value = '';
   }
-
-  onDelete() {
-    const team = this.teamNameRef.nativeElement.value;
-    let verify = prompt('Are you sure you want to delete this team?');
-    if(verify !== null) {
-      for (let i = 0; i < this.dataService.allTeams.length; i++) {
-        if (this.dataService.allTeams[i].teamName === team) {
-          this.dataService.allTeams.splice(i,1);
-          this.dataService.saveData();
-        }
-      }
-    }
-  }
-
 }

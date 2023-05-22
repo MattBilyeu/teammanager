@@ -27,4 +27,12 @@ export class MemberAssignmentsComponent implements OnInit {
     this.dataService.teamMembers[this.index].secondaryAssignment = secondary;
     this.dataService.saveData();
   }
+
+  onRemove() {
+    let verify = confirm('Are you sure you want to remove this member?');
+    if(verify) {
+      this.dataService.teamMembers.splice(this.index,1);
+      this.dataService.saveData();
+    }
+  }
 }

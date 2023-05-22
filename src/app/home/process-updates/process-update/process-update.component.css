@@ -9,6 +9,14 @@ li {
 @media screen and (min-width: 800px) {
     h2, p, ol, li {
         color: white;
-        filter: brightness(130%)
+        filter: brightness(130%);
+        max-width: 268px;
+    }
+
+    .userUpdate {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
     }
 }

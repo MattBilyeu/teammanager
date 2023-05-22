@@ -1,4 +1,4 @@
-import { Component, Input, ViewChild, } from '@angular/core';
+import { Component, Input, ViewChild, Output, EventEmitter } from '@angular/core';
 import { DataService } from 'src/app/data.service';
 
 @Component({
@@ -12,6 +12,7 @@ export class ChangeTeamComponent {
   @Input('managers') managers;
   @ViewChild('addManager') addMgrRef;
   @ViewChild('managerSelection') mgrSelRef;
+  @Output('teamDeleted') teamDel = new EventEmitter<null>();
 
   constructor(private dataService: DataService) {}
 
@@ -35,7 +36,9 @@ export class ChangeTeamComponent {
     let verify = confirm('Are you sure you want to delete this team?');
     if(verify) {
       this.dataService.allTeams.splice(this.index,1);
-    }
+    };
+    this.dataService.teamName = undefined;
+    this.teamDel.emit(null);
     this.dataService.saveData();
   }
 }

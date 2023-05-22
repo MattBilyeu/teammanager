@@ -25,9 +25,9 @@ export class AllUpdatesComponent implements OnInit {
 
   getClass(index: number) {
     if (index % 2 == 0) {
-      return ''
+      return 'tip'
     } else {
-      return 'grey'
+      return 'grey tip'
     }
   }
 }

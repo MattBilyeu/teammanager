@@ -27,9 +27,10 @@ export class ChangePasswordComponent implements OnInit {
           this.dataService.teamMembers[i].password = newPassword;
           this.success = true;
           this.dataService.saveData();
-        } else {
-          alert('Username and password does not match');
         }
+      }
+      if(!this.success) {
+        alert('Password Change Failed: Old Password Does Not Match!')
       }
     } else if (this.dataService.userRole === 'Manager') {
       for(let i = 0; i < this.dataService.manager.length; i++) {
@@ -37,9 +38,10 @@ export class ChangePasswordComponent implements OnInit {
           this.dataService.manager[i].password = newPassword;
           this.success = true;
           this.dataService.saveData();
-        } else {
-          alert('Username and password does not match');
         }
+      }
+      if(!this.success) {
+        alert('Password Change Failed: Old Password Does Not Match!')
       }
     } else if (this.dataService.userRole === 'Admin') {
       for(let i = 0; i < this.dataService.admins.length; i++) {
@@ -47,9 +49,10 @@ export class ChangePasswordComponent implements OnInit {
           this.dataService.admins[i].password = newPassword;
           this.success = true;
           this.dataService.saveData();
-        } else {
-          alert('Username and password does not match');
         }
+      }
+      if(!this.success) {
+        alert('Password Change Failed: Old Password Does Not Match!')
       }
     } else {
       alert('User role not found, contact administrator.')

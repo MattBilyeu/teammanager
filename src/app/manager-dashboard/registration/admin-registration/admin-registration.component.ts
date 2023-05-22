@@ -38,5 +38,6 @@ export class AdminRegistrationComponent implements OnInit {
     const admin = new Admin (name, 'Password');
     this.dataService.admins.push(admin);
     this.dataService.saveData();
+    this.adminNameRef.nativeElement.value = ''
   }
 }
