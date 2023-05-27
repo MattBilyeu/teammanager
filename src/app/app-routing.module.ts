@@ -13,7 +13,8 @@ const routes: Routes = [
   {path: 'managers', component: ManagerDashboardComponent},
   {path: 'all-tips', component: AllTipsComponent},
   {path: 'all-updates', component: AllUpdatesComponent},
-  {path: 'change-password', component: ChangePasswordComponent}
+  {path: 'change-password', component: ChangePasswordComponent},
+  {path: '**', redirectTo: ''}
 ];
 
 @NgModule({
