@@ -10,7 +10,7 @@
         <button *ngIf="userRole !== 'Admin'" (click)="onAllUpdates()">All Updates</button>
         <button (click)="onChangePassword()">Change Password</button>
         <button class="logOut" (click)="onLogOut()">Log Out</button>
-        <button class="returnButton"><a href="mbilyeu.com">Portfolio</a></button>
+        <button class="returnButton"><a href="https://mbilyeu.com/">Portfolio</a></button>
     </div>
     <div class="desktopNav">
         <div class="navFlex">
@@ -18,7 +18,7 @@
             <button *ngIf="userRole !== 'Admin'" [ngClass]="getClass('allTips')" (click)="onAllTips()">All Tips</button>
             <button *ngIf="userRole !== 'Admin'" [ngClass]="getClass('allUpdates')" (click)="onAllUpdates()">All Updates</button>
             <button [ngClass]="getClass('changePassword')" (click)="onChangePassword()">Change Password</button>
-            <button class="returnButton"><a href="mbilyeu.com">Portfolio</a></button>
+            <button class="returnButton"><a href="https://mbilyeu.com/">Portfolio</a></button>
         </div>
         <button class="logOut" (click)="onLogOut()">Log Out</button>
     </div>
