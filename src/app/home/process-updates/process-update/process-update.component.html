@@ -2,8 +2,8 @@
     <h2>{{ update.task }}</h2>
     <p>{{ update.info }}</p>
 </div>
-<div *ngIf="dashboard === 'Manager' && membersNotRead.length > 0">
-    <h2>{{ update.task }}</h2>
+<div class="userUpdate" *ngIf="dashboard === 'Manager' && membersNotRead.length > 0">
+    <h1 class="primaryTextColor">{{ update.task }}</h1>
     <p>{{ update.info }}</p>
     <div>
         <ol>Not Acknowledged By: 

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../data.service';
+import { Update } from '../models/update.model';
+import { Member } from '../models/member.model';
 
 @Component({
   selector: 'app-manager-dashboard',
@@ -8,11 +10,19 @@ import { DataService } from '../data.service';
 })
 export class ManagerDashboardComponent implements OnInit {
   dashboard: string;
+  processUpdates: Update[];
+  teamMembers: Member[];
 
   constructor(private dataService: DataService) {}
 
   ngOnInit() {
+    this.teamMembers = this.dataService.teamMembers;
     this.dashboard = this.dataService.userRole;
+    this.updateArray();
+  }
+
+  updateArray() {
+    this.processUpdates = this.dataService.processUpdates;
   }
 
 }

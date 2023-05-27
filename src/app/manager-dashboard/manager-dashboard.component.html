@@ -2,17 +2,34 @@
     <div class="dTips">
         <app-daily-tip-edit></app-daily-tip-edit>
     </div>
-    <div class="pUpdates">
-        <app-process-updates-edit></app-process-updates-edit>
+    <div class="flexContainer spaceAboveBelow">
+        <div class="pUpdates">
+            <app-process-updates-edit></app-process-updates-edit>
+        </div>
+        <div class="panel" *ngFor="let update of processUpdates; let i = index">
+            <app-process-update  
+                [update]="update" 
+                [dashboard]="'Manager'" 
+                [index]="i" 
+                (updateDeleted)="updateArray()">
+            </app-process-update>
+        </div>
     </div>
-    <div class="assignTasks">
-        <app-project-assignments-edit></app-project-assignments-edit>
+    <div class="flexContainer spaceAboveBelow">
+        <div class="addUser">
+            <app-registration></app-registration>
+        </div>
     </div>
-    <div class="addTasks">
-        <app-add-remove-tasks></app-add-remove-tasks>
-    </div>
-    <div class="addUser">
-        <app-registration></app-registration>
+    <div class="flexContainer spaceAboveBelow">
+        <div class="addTasks">
+            <app-add-remove-tasks></app-add-remove-tasks>
+        </div>
+        <div class="assignTasks panel" *ngFor=" let member of teamMembers; let i = index">
+            <app-member-assignments
+                [index]="i" 
+                [member]="member">
+            </app-member-assignments>
+        </div>
     </div>
 </div>
 <app-registration *ngIf="dashboard === 'Admin'"></app-registration>

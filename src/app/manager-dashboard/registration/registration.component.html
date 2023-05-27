@@ -1,14 +1,14 @@
 <app-user-registration *ngIf="userRole ==='Manager'"></app-user-registration>
-<div class="admin" *ngIf="userRole === 'Admin'">
-    <div class="colOne">
+<div *ngIf="userRole === 'Admin'">
+    <div class="admin">
+        <div class="panel">
+            <app-admin-registration></app-admin-registration>
+        </div>
         <div class="panel">
             <app-manager-registration></app-manager-registration>
         </div>
-        <div class="panel">
-            <app-change-manager></app-change-manager>
-        </div>
     </div>
-    <div class="panel">
-        <app-admin-registration></app-admin-registration>
+    <div>
+        <app-change-manager></app-change-manager>
     </div>
 </div>

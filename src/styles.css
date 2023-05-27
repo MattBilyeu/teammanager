@@ -121,4 +121,13 @@ select {
         color: white;
         filter: brightness(130%);
     }
+
+    .panel {
+        height: 288;
+        color: var(--primary-color);
+        border-radius: 15px;
+        background-color: grey;
+        padding: 1rem;
+        box-shadow: 2px 2px 2px rgba(0,0,0,0.5);
+    }
 }

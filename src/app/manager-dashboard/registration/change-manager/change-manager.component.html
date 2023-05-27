@@ -1,8 +1,11 @@
-<div *ngFor="let team of teams; let i = index">
-    <app-change-team 
-        [teamName]="team.teamName" 
-        [managers]="team.manager"
-        [index]="i"
-        (teamDeleted)="updateTeams()">
-    </app-change-team>
+<div class="cTBox">
+    <div class="panel" *ngFor="let team of teams; let i = index">
+        <app-change-team 
+            [teamName]="team.teamName" 
+            [managers]="team.manager"
+            [index]="i"
+            (teamDeleted)="updateTeams()">
+        </app-change-team>
+    </div>
 </div>
+
