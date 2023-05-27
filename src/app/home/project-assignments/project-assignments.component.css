@@ -22,4 +22,8 @@
     #assignmentContainer {
         font-weight: bold;
     }
+
+    .component {
+        width: auto;
+    }
 }

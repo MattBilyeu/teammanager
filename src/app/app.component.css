@@ -78,6 +78,17 @@ nav {
     text-decoration: underline;
 }
 
+.returnButton,
+.returnButton a {
+    background-color: #556B2F !important;
+    color: white !important;
+}
+
+.returnButton:hover,
+.returnButton:active {
+    filter: brightness(85%) !important;
+}
+
 @media screen and (min-width: 800px) {
     .mobileNav {
         display: none;
