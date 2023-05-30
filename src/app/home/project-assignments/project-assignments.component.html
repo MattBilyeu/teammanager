@@ -8,7 +8,7 @@
         <label id="roleLabel">Role:</label>
         <label id="teamLabel">Team:</label>
         <div id="name">{{ currentUser.name }}</div>
-        <div id="manager">{{ currentUser.manager }}</div>
+        <div id="manager"><div *ngFor="let manager of managers">{{ manager }}</div></div>
         <div id="primAssign">{{ currentUser.primaryAssignment }}</div>
         <div id="secondAssign">{{ currentUser.secondaryAssignment }}</div>
         <div id="role">{{ currentUser.role }}</div>
