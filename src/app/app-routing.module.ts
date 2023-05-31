@@ -8,7 +8,7 @@ import { AllUpdatesComponent } from './all-updates/all-updates.component'
 import { ChangePasswordComponent } from './change-password/change-password.component';
 
 const routes: Routes = [
-  {path: '', component: AppComponent},
+  {path: '', component: AppComponent, pathMatch: 'full'},
   {path: 'users', component: HomeComponent},
   {path: 'managers', component: ManagerDashboardComponent},
   {path: 'all-tips', component: AllTipsComponent},
