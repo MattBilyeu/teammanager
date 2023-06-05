@@ -45,8 +45,12 @@
     </div>
 </div>
 <div id="demoInfo" *ngIf="loggedIn === false">
-    <h1 id="demoHeading">Demo</h1>
-    <p>You can login as an Admin with username/password "Admin"/"Admin".  
-        <br>Whenever a new user is created, their password defaults to "password."</p>
+    <h1 id="demoHeading">Demo Login</h1>
+    <p>Log in as an Admin first to add team data.</p>
+    <div class="demoButtonsContainer">
+        <button class="admin" (click)="demoAdmin()">Admin</button>
+        <button class="manager" (click)="demoManager()">Manager</button>
+        <button class="user" (click)="demoUser()">User</button>
+    </div>
 </div>
 <router-outlet *ngIf="loggedIn === true"></router-outlet>

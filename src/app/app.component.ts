@@ -29,8 +29,6 @@ export class AppComponent implements OnInit {
     this.dataService.allTeams.forEach((team)=> {
       this.allTeamNames.push(team.teamName);
     })
-    //for devo purposes
-    //this.loggedIn = true;
   }
 
   onHome() {
@@ -104,5 +102,40 @@ export class AppComponent implements OnInit {
 
   displayMobile() {
     this.displayMobileNav = !this.displayMobileNav;
+  }
+
+  demoAdmin() {
+    this.roleRef.nativeElement.value = 'Admin';
+    this.userNameRef.nativeElement.value = 'Admin';
+    this.passwordRef.nativeElement.value = 'Admin';
+    this.onLogIn();
+  }
+
+  demoManager() {
+    if(this.dataService.allTeams.length === 0) {
+      alert('Please log in as an Admin first and create a team.')
+    } else {
+      const manager = this.dataService.allTeams[0].manager[0];
+      this.roleRef.nativeElement.value = 'Manager';
+      this.userNameRef.nativeElement.value = manager.name;
+      this.passwordRef.nativeElement.value = manager.password;
+      this.teamNameRef.nativeElement.value = this.dataService.allTeams[0].teamName;
+      this.onLogIn();
+    }
+  }
+
+  demoUser() {
+    if(this.dataService.allTeams.length === 0) {
+      alert('Please log in as an admin first and create a team.')
+    } else if(this.dataService.allTeams[0].teamMembers.length === 0) {
+        alert('Please log in as a Manager first and add a team member');
+      } else {
+        const user = this.dataService.allTeams[0].teamMembers[0];
+        this.roleRef.nativeElement.value = 'User';
+        this.userNameRef.nativeElement.value = user.name;
+        this.passwordRef.nativeElement.value = user.password;
+        this.teamNameRef.nativeElement.value = this.dataService.allTeams[0].teamName;
+        this.onLogIn();
+    }
   }
 }

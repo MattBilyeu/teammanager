@@ -89,6 +89,10 @@ nav {
     filter: brightness(85%) !important;
 }
 
+.demoButtonsContainer button.manager {
+    margin: 0 1rem;
+}
+
 @media screen and (min-width: 800px) {
     .mobileNav {
         display: none;
