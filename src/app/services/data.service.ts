@@ -1,10 +1,11 @@
 import { Injectable } from "@angular/core";
-import { Member } from "./models/member.model";
-import { UpdateMemberService } from "./update-member.service";
-import { Tip } from "./models/tip.model";
-import { Update } from "./models/update.model";
-import { Team } from "./models/team.model";
-import { Admin } from "./models/admin.model";
+import { Member } from "../models/member.model";
+import { UpdateMemberService } from "../update-member.service";
+import { Tip } from "../models/tip.model";
+import { Update } from "../models/update.model";
+import { Team } from "../models/team.model";
+import { Admin } from "../models/admin.model";
+import { ServerService } from "./server.service";
 
 @Injectable()
 export class DataService {
@@ -20,7 +21,8 @@ export class DataService {
     allTeams: Team[] = [];
     loggedIn: boolean = false;
 
-    constructor(private update: UpdateMemberService) {}
+    constructor(private update: UpdateMemberService,
+                private serverService: ServerService) {}
 
     createMember(name: string, manager: string, primaryAssignment: string, secondaryAssignment: string, role: string, team: string) {
         let newMember = new Member(name, manager, primaryAssignment, secondaryAssignment, role, team, 'Password');
@@ -77,7 +79,7 @@ export class DataService {
         this.saveData();
     }
 
-    //uses web storage for now, can eventually be hooked up to a database.
+    //Server service added to .gitignore for security
     saveData() {
         if(this.userRole !== 'Admin') {
             this.loadData();
@@ -93,30 +95,27 @@ export class DataService {
         if (!teamFound && team.teamName !== undefined) {
             this.allTeams.push(team);
         }
-        let data = JSON.stringify(this.allTeams);
-        let adminData = JSON.stringify(this.admins);
-        localStorage.setItem('data5', data);
-        localStorage.setItem('admins', adminData);
+        this.serverService.storeData(this.allTeams, this.admins);
     }
 
     loadData() {
-        const dataString = localStorage.getItem('data5');
-        const adminDataString = localStorage.getItem('admins');
-        if (dataString !== null && dataString !== '') {
-            try {
-                const data: Team[] = JSON.parse(dataString);
-                this.allTeams = data;
-            } catch (err) {
-                console.error('Error parsing data from localStorage', err);
+        const dataString = this.serverService.fetchTeams().subscribe(data => {
+            if (data !== null) {
+                try {
+                    this.allTeams = data;
+                } catch (err) {
+                    console.error('Error parsing data from server', err);
+                }
             }
-        }
-        if (adminDataString !== null && adminDataString !== '') {
-            try {
-                const adminData: Admin[] = JSON.parse(adminDataString);
-                this.admins = adminData;
-            } catch (err) {
-                console.error('Error parsing data from localStorage', err);
+        });
+        const adminDataString = this.serverService.fetchAdmins().subscribe(adminData => {
+            if (adminDataString !== null) {
+                try {
+                    this.admins = adminData;
+                } catch (err) {
+                    console.error('Error parsing data from server', err);
+                }
             }
-        }
+        });
     }
 }

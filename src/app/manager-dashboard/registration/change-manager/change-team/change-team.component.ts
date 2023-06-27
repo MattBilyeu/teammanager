@@ -1,5 +1,5 @@
 import { Component, Input, ViewChild, Output, EventEmitter } from '@angular/core';
-import { DataService } from 'src/app/data.service';
+import { DataService } from 'src/app/services/data.service';
 
 @Component({
   selector: 'app-change-team',

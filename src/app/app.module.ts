@@ -12,7 +12,7 @@ import { ProcessUpdatesComponent } from './home/process-updates/process-updates.
 import { ProcessUpdatesEditComponent } from './manager-dashboard/process-updates-edit/process-updates-edit.component';
 import { RegistrationComponent } from './manager-dashboard/registration/registration.component';
 import { ChangeManagerComponent } from './manager-dashboard/registration/change-manager/change-manager.component';
-import { DataService } from './data.service';
+import { DataService } from './services/data.service';
 import { UpdateMemberService } from './update-member.service';
 import { ManagerDashboardComponent } from './manager-dashboard/manager-dashboard.component';
 import { ProcessUpdateComponent } from './home/process-updates/process-update/process-update.component';
@@ -26,7 +26,9 @@ import { AllTipsComponent } from './all-tips/all-tips.component';
 import { AllUpdatesComponent } from './all-updates/all-updates.component';
 import { AdminRegistrationComponent } from './manager-dashboard/registration/admin-registration/admin-registration.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
-import { LoginService } from './login.service';
+import { LoginService } from './services/login.service';
+import { ServerService } from './services/server.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -55,9 +57,10 @@ import { LoginService } from './login.service';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
-  providers: [DataService, UpdateMemberService, DataService, LoginService],
+  providers: [DataService, UpdateMemberService, DataService, LoginService, ServerService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

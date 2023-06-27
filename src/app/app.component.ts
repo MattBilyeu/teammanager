@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { DataService } from './data.service';
+import { DataService } from './services/data.service';
 import { Router } from '@angular/router';
-import { LoginService } from './login.service';
+import { LoginService } from './services/login.service';
 import { Observable } from 'rxjs';
 
 @Component({

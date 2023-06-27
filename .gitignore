@@ -40,3 +40,7 @@ testem.log
 # System files
 .DS_Store
 Thumbs.db
+
+# User Added
+src/app/services/server.service.ts
+src/app/services/auth.service.ts
