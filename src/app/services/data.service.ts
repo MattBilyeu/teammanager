@@ -28,8 +28,40 @@ export class DataService {
     constructor(private update: UpdateMemberService,
                 private serverService: ServerService) {}
 
+    findUserTeam(userName: string, password: string, role: string) {
+        if(role === 'User') {
+            for(let i = 0; i < this.allTeams.length; i++) {
+                for (let x = 0; x < this.allTeams[i].teamMembers.length; i++) {
+                    let member = this.allTeams[i].teamMembers[x]
+                    if (userName === member.name && password === member.password) {
+                        return this.allTeams[i].teamName;
+                    } else {
+                        return null
+                    }
+                }
+            }
+        } else if (role === 'Manager') {
+            for(let i = 0; i < this.allTeams.length; i++) {
+                for (let x = 0; x < this.allTeams[i].manager.length; i++) {
+                    let member = this.allTeams[i].manager[x];
+                    console.log(member);
+                    if (userName === member.name && password === member.password) {
+                        return this.allTeams[i].teamName;
+                    } else {
+                        return null;
+                    }
+                }
+            }
+        } else {
+            return null;
+        }
+        return null;
+    }
+
     createMember(name: string, manager: string, primaryAssignment: string, secondaryAssignment: string, role: string, team: string) {
         let newMember = new Member(name, manager, primaryAssignment, secondaryAssignment, role, team, 'Password');
+        console.log(newMember);
+        console.log(this.teamMembers);
         this.teamMembers.push(newMember);
         this.saveData();
     }

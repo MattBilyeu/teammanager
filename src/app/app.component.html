@@ -30,10 +30,6 @@
             <input type="text" #userName>
             <label>Password: </label>
             <input type="password" #password>
-            <label>Team: </label>
-            <select #teamName>
-                <option *ngFor="let teamName of allTeamNames">{{ teamName }}</option>
-            </select>
             <label>Role: </label>
             <select #role>
                 <option>User</option>
@@ -44,13 +40,6 @@
         <button class="submit" type="submit" (click)="onLogIn()">Log In</button>
     </div>
 </div>
-<div id="demoInfo" *ngIf="loggedIn === false">
-    <h1 id="demoHeading">Demo Login</h1>
-    <p>Log in as an Admin first to add team data.</p>
-    <div class="demoButtonsContainer">
-        <button class="admin" (click)="demoAdmin()">Admin</button>
-        <button class="manager" (click)="demoManager()">Manager</button>
-        <button class="user" (click)="demoUser()">User</button>
-    </div>
+<div>
+    <router-outlet *ngIf="loggedIn === true"></router-outlet>
 </div>
-<router-outlet *ngIf="loggedIn === true"></router-outlet>

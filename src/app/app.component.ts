@@ -34,9 +34,7 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   onHome() {
-    if(this.dataService.loggedIn === false) {
-      alert('You have to log in first.');
-    } else if(this.dataService.userRole !== 'User') {
+    if(this.dataService.userRole !== 'User') {
       this.router.navigate(['/managers']);
     } else {
       this.router.navigate(['/users']);
@@ -69,30 +67,14 @@ export class AppComponent implements OnInit, OnDestroy {
     const role = this.roleRef.nativeElement.value;
     const userName = this.userNameRef.nativeElement.value;
     const password = this.passwordRef.nativeElement.value;
-    const teamName = this.teamNameRef.nativeElement.value;
     this.authService.login(userName, password);
     this.loginEventSubscription = this.authService.loginEvent.subscribe(()=> {
-      if(role === 'Admin') {
-        this.loginService.loginAdmin(userName, password);
-        if(this.dataService.loggedIn === true) {
-          this.onHome();
-        };
-      } else if (role === 'Manager') {
-        this.loginService.loginManager(userName, teamName, password);
-        if(this.dataService.loggedIn === true) {
-          this.onHome();
-        };
-      } else if (role === 'User') {
-        this.loginService.loginUser(userName, teamName, password);
-        if(this.dataService.loggedIn === true) {
-          this.onHome();
-        };
-      } else {
-        alert('Role error, contact administrator.')
-      }
-      this.loggedIn = this.dataService.loggedIn;
-      this.userRole = this.dataService.userRole;
-    })
+      const team = this.dataService.findUserTeam(userName, password, role);
+      this.dataService.userRole = role;
+      this.loginService.loadTeam(userName, role, team);
+      this.loggedIn = true;
+      this.onHome();
+    });
   }
 
   getClass(button) {
@@ -105,41 +87,6 @@ export class AppComponent implements OnInit, OnDestroy {
 
   displayMobile() {
     this.displayMobileNav = !this.displayMobileNav;
-  }
-
-  demoAdmin() {
-    this.roleRef.nativeElement.value = 'Admin';
-    this.userNameRef.nativeElement.value = 'Admin';
-    this.passwordRef.nativeElement.value = 'Admin';
-    this.onLogIn();
-  }
-
-  demoManager() {
-    if(this.dataService.allTeams.length === 0) {
-      alert('Please log in as an Admin first and create a team.')
-    } else {
-      const manager = this.dataService.allTeams[0].manager[0];
-      this.roleRef.nativeElement.value = 'Manager';
-      this.userNameRef.nativeElement.value = manager.name;
-      this.passwordRef.nativeElement.value = manager.password;
-      this.teamNameRef.nativeElement.value = this.dataService.allTeams[0].teamName;
-      this.onLogIn();
-    }
-  }
-
-  demoUser() {
-    if(this.dataService.allTeams.length === 0) {
-      alert('Please log in as an admin first and create a team.')
-    } else if(this.dataService.allTeams[0].teamMembers.length === 0) {
-        alert('Please log in as a Manager first and add a team member');
-      } else {
-        const user = this.dataService.allTeams[0].teamMembers[0];
-        this.roleRef.nativeElement.value = 'User';
-        this.userNameRef.nativeElement.value = user.name;
-        this.passwordRef.nativeElement.value = user.password;
-        this.teamNameRef.nativeElement.value = this.dataService.allTeams[0].teamName;
-        this.onLogIn();
-    }
   }
 
   ngOnDestroy() {
