@@ -1,15 +1,17 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
 import { DataService } from './services/data.service';
 import { Router } from '@angular/router';
 import { LoginService } from './services/login.service';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
+import { AuthService } from './services/auth.service';
+import { Admin } from './models/admin.model';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, OnDestroy {
   @ViewChild('teamName') teamNameRef;
   @ViewChild('userName') userNameRef;
   @ViewChild('role') roleRef;
@@ -19,16 +21,16 @@ export class AppComponent implements OnInit {
   tabSelected: string = 'home';
   displayMobileNav: boolean = false;
   userRole: string;
+  loginEventSubscription: Subscription;
 
   constructor(private dataService: DataService,
               private router: Router,
-              private loginService: LoginService) {}
+              private loginService: LoginService,
+              private authService: AuthService) {}
 
   ngOnInit() {
-    this.dataService.loadData();
-    this.dataService.allTeams.forEach((team)=> {
-      this.allTeamNames.push(team.teamName);
-    })
+    const admin = new Admin('test@test.com', 'Password');
+    this.dataService.admins.push(admin);
   }
 
   onHome() {
@@ -58,9 +60,7 @@ export class AppComponent implements OnInit {
   }
 
   onLogOut() {
-    this.loggedIn = false;
-    this.dataService.loggedIn = false;
-    this.userRole = undefined;
+    this.authService.logout();
     this.dataService.loadData();
     this.tabSelected = '';
   }
@@ -70,26 +70,29 @@ export class AppComponent implements OnInit {
     const userName = this.userNameRef.nativeElement.value;
     const password = this.passwordRef.nativeElement.value;
     const teamName = this.teamNameRef.nativeElement.value;
-    if(role === 'Admin') {
-      this.loginService.loginAdmin(userName, password);
-      if(this.dataService.loggedIn === true) {
-        this.onHome();
-      };
-    } else if (role === 'Manager') {
-      this.loginService.loginManager(userName, teamName, password);
-      if(this.dataService.loggedIn === true) {
-        this.onHome();
-      };
-    } else if (role === 'User') {
-      this.loginService.loginUser(userName, teamName, password);
-      if(this.dataService.loggedIn === true) {
-        this.onHome();
-      };
-    } else {
-      alert('Role error, contact administrator.')
-    }
-    this.loggedIn = this.dataService.loggedIn;
-    this.userRole = this.dataService.userRole;
+    this.authService.login(userName, password);
+    this.loginEventSubscription = this.authService.loginEvent.subscribe(()=> {
+      if(role === 'Admin') {
+        this.loginService.loginAdmin(userName, password);
+        if(this.dataService.loggedIn === true) {
+          this.onHome();
+        };
+      } else if (role === 'Manager') {
+        this.loginService.loginManager(userName, teamName, password);
+        if(this.dataService.loggedIn === true) {
+          this.onHome();
+        };
+      } else if (role === 'User') {
+        this.loginService.loginUser(userName, teamName, password);
+        if(this.dataService.loggedIn === true) {
+          this.onHome();
+        };
+      } else {
+        alert('Role error, contact administrator.')
+      }
+      this.loggedIn = this.dataService.loggedIn;
+      this.userRole = this.dataService.userRole;
+    })
   }
 
   getClass(button) {
@@ -137,5 +140,9 @@ export class AppComponent implements OnInit {
         this.teamNameRef.nativeElement.value = this.dataService.allTeams[0].teamName;
         this.onLogIn();
     }
+  }
+
+  ngOnDestroy() {
+    this.loginEventSubscription.unsubscribe();
   }
 }

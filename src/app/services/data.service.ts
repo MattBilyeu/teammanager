@@ -6,6 +6,7 @@ import { Update } from "../models/update.model";
 import { Team } from "../models/team.model";
 import { Admin } from "../models/admin.model";
 import { ServerService } from "./server.service";
+import { AuthService } from "./auth.service";
 
 @Injectable()
 export class DataService {
@@ -20,6 +21,9 @@ export class DataService {
     admins: Admin[] = [{name: 'Admin', password: 'Admin'}];
     allTeams: Team[] = [];
     loggedIn: boolean = false;
+    serverToken = null;
+    expirationDate: Date;
+
 
     constructor(private update: UpdateMemberService,
                 private serverService: ServerService) {}

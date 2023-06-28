@@ -1,6 +1,7 @@
 import { Component, ViewChild, OnInit } from '@angular/core';
 import { DataService } from 'src/app/services/data.service';
 import { Admin } from 'src/app/models/admin.model';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-admin-registration',
@@ -12,7 +13,8 @@ export class AdminRegistrationComponent implements OnInit {
   @ViewChild('adminName') adminNameRef;
   currentAdmins: Admin[] = []
 
-  constructor(private dataService: DataService) {}
+  constructor(private dataService: DataService,
+              private authService: AuthService) {}
 
   ngOnInit() {
     this.currentAdmins = this.dataService.admins;
@@ -35,6 +37,7 @@ export class AdminRegistrationComponent implements OnInit {
 
   onRegisterAdmin() {
     const name = this.adminNameRef.nativeElement.value;
+    this.authService.registerUser(name, 'Password');
     const admin = new Admin (name, 'Password');
     this.dataService.admins.push(admin);
     this.dataService.saveData();

@@ -1,5 +1,6 @@
 import { Component, ViewChild, OnInit } from '@angular/core';
 import { DataService } from '../services/data.service';
+import { ServerService } from '../services/server.service';
 
 @Component({
   selector: 'app-change-password',
@@ -12,7 +13,8 @@ export class ChangePasswordComponent implements OnInit {
   user: string;
   success: boolean = false;
 
-  constructor(private dataService: DataService) {};
+  constructor(private dataService: DataService,
+              private serverService: ServerService) {};
 
   ngOnInit() {
     this.user = this.dataService.user;
@@ -25,6 +27,7 @@ export class ChangePasswordComponent implements OnInit {
       for(let i = 0; i < this.dataService.teamMembers.length; i++) {
         if(this.dataService.teamMembers[i].name === this.dataService.user && this.dataService.teamMembers[i].password === oldPassword) {
           this.dataService.teamMembers[i].password = newPassword;
+          this.serverService.changePassword(newPassword, this.dataService.serverToken);
           this.success = true;
           this.dataService.saveData();
         }
@@ -36,6 +39,7 @@ export class ChangePasswordComponent implements OnInit {
       for(let i = 0; i < this.dataService.manager.length; i++) {
         if(this.dataService.manager[i].name === this.dataService.user && this.dataService.manager[i].password === oldPassword) {
           this.dataService.manager[i].password = newPassword;
+          this.serverService.changePassword(newPassword, this.dataService.serverToken);
           this.success = true;
           this.dataService.saveData();
         }
@@ -47,6 +51,7 @@ export class ChangePasswordComponent implements OnInit {
       for(let i = 0; i < this.dataService.admins.length; i++) {
         if(this.dataService.admins[i].name === this.dataService.user && this.dataService.admins[i].password === oldPassword) {
           this.dataService.admins[i].password = newPassword;
+          this.serverService.changePassword(newPassword, this.dataService.serverToken);
           this.success = true;
           this.dataService.saveData();
         }

@@ -1,4 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
+import { AuthService } from 'src/app/services/auth.service';
 import { DataService } from 'src/app/services/data.service';
 
 @Component({
@@ -9,10 +10,12 @@ import { DataService } from 'src/app/services/data.service';
 export class UserRegistrationComponent {
   @ViewChild('name') nameRef;
 
-  constructor(private dataService: DataService) {}
+  constructor(private dataService: DataService,
+              private authService: AuthService) {}
 
   onSubmit() {
     const user = this.nameRef.nativeElement.value;
     this.dataService.createMember(user, this.dataService.user, '','','user',this.dataService.teamName);
+    this.authService.registerUser(user, 'Password');
   }
 }

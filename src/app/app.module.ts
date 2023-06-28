@@ -29,6 +29,7 @@ import { ChangePasswordComponent } from './change-password/change-password.compo
 import { LoginService } from './services/login.service';
 import { ServerService } from './services/server.service';
 import { HttpClientModule } from '@angular/common/http';
+import { HttpInterceptorService } from './services/http-interceptor.service';
 
 @NgModule({
   declarations: [
@@ -60,7 +61,7 @@ import { HttpClientModule } from '@angular/common/http';
     AppRoutingModule,
     HttpClientModule
   ],
-  providers: [DataService, UpdateMemberService, DataService, LoginService, ServerService],
+  providers: [DataService, UpdateMemberService, DataService, LoginService, ServerService, HttpInterceptorService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

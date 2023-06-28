@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { DataService } from 'src/app/services/data.service';
 import { Team } from 'src/app/models/team.model';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-change-manager',
@@ -12,7 +13,8 @@ export class ChangeManagerComponent implements OnInit {
   @ViewChild('addManager') managerNameRef;
   teams: Team[] = [];
 
-  constructor(private dataService: DataService) {}
+  constructor(private dataService: DataService,
+              private authService: AuthService) {}
 
   ngOnInit() {
     this.teams = this.dataService.allTeams;
@@ -31,6 +33,7 @@ export class ChangeManagerComponent implements OnInit {
 
   onAddManager(index: number){
     const name = this.managerNameRef.nativeElement.value;
+    this.authService.registerUser(name, 'Password');
     this.dataService.allTeams[index].manager.push({name: name, password: 'Password'});
     this.teams = this.dataService.allTeams;
     this.dataService.saveData();
